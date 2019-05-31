@@ -24,8 +24,8 @@
            </ul>
 
            <ul class="nav navbar-nav navbar-right">
-             <li><a href="<?php echo base_url(); ?>register">Register</a></li>
-             <li><a href="<?php echo base_url(); ?>login">Login</a></li>
+             <li <?php if($title=="Register")echo 'class="active"';?> ><a href="<?php echo base_url(); ?>users/register">Register</a></li>
+             <li <?php if($title=="Login") echo 'class="active"';?> ><a href="<?php echo base_url(); ?>users/login">Login</a></li>
           </ul>
 
          </div><!-- /.nav-collapse -->
