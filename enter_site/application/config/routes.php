@@ -49,20 +49,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-<<<<<<< HEAD
 
 $route['users'] = "users/index";
 
 //For our defoault controller:
-$route['default_controller'] = 'Admin';
+$route['default_controller'] = 'guest';
 
 //This is going to get anything that we go to:
 $route['(:any)'] = 'pages/view/$1';
 
 
 
-=======
-$route['default_controller'] = 'guest';
->>>>>>> 96e5ce2bd76bd5ca16e5e3e156980067fa837b57
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
