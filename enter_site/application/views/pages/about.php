@@ -1,5 +1,1 @@
-<?php
-echo "This is about";
-
-
- ?>
+This is about us 

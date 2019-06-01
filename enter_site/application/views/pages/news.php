@@ -1,1 +1,1 @@
-This is the news page
+This is news 

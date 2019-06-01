@@ -1,6 +1,0 @@
-Setting up the base URL	
-	application/config/config.php
-
-Conneting to the data base:
-	config-> database.php -> (fill the data)
-
