@@ -1,33 +1,54 @@
+<header>
+ 
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
 
-<?php
-//navbar-toggleable-md   navbar-inverse bg-primary
- ?>
- <nav class="navbar navbar-fixed-top navbar-inverse ">
-       <div class="container">
-         <div class="navbar-header">
-           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-             <span class="sr-only">Toggle navigation</span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-           </button>
-           <a class="navbar-brand" href="<?php echo base_url();?>home">ENTER</a>
-         </div>
-         <div id="navbar" class="collapse navbar-collapse">
-           <ul class="nav navbar-nav">
-             <li <?php if($title=="Home")echo 'class="active"'; ?> ><a href="<?php echo base_url();?>home">Home</a></li>
-             <li <?php if($title=="Tickets")echo 'class="active"'; ?>> <a href="<?php echo base_url(); ?>tickets">Tickets</a></li>
-             <li <?php if($title=="Lineup")echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>lineup">Lineup</a></li>
-             <li <?php if($title=="Guide")echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>guide">Guide</a></li>
-             <li <?php if($title=="News")echo 'class="active"'; ?>><a href="<?php echo base_url(); ?>news">News</a></li>
+     <!--  ENTER = HOME -->
+    <a class="navbar-brand" href="<?php echo base_url();?>">ENTER</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
 
-           </ul>
+        <!--  TICKETS -->
+        <li class="nav-item <?php if($title=='Tickets')echo 'active';?>">
+          <a class="nav-link" href="<?php echo base_url();?>index.php/guest/index/tickets">TICKETS</a>
+        </li>
 
-           <ul class="nav navbar-nav navbar-right">
-             <li <?php if($title=="Register")echo 'class="active"';?> ><a href="<?php echo base_url(); ?>users/register">Register</a></li>
-             <li <?php if($title=="Login") echo 'class="active"';?> ><a href="<?php echo base_url(); ?>users/login">Login</a></li>
-          </ul>
+        <!--  Line UP -->
+        <li class="nav-item <?php if($title=='Lineup')echo 'active';?>">
+          <a class="nav-link" href="<?php echo base_url();?>index.php/guest/index/lineup">LINEUP</a>
+        </li>
 
-         </div><!-- /.nav-collapse -->
-       </div><!-- /.container -->
-     </nav><!-- /.navbar -->
+        <!--  GUIDE -->
+        <li class="nav-item <?php if($title=='Guide')echo 'active';?>">
+          <a class="nav-link" href="<?php echo base_url();?>index.php/guest/index/guide">GUIDE</a>
+        </li>
+
+        <!--  NEWS -->
+        <li class="nav-item <?php if($title=='News')echo 'active';?>">
+          <a class="nav-link" href="<?php echo base_url();?>index.php/guest/index/news">NEWS</a>
+        </li>
+
+      </ul>
+      
+
+      <ul class="navbar-nav ml-auto">
+        <!--  REGISTER -->
+        <li class="nav-item <?php if($title=='Register')echo 'active';?>">
+          <a class="nav-link" href="<?php echo base_url();?>index.php/users/index/register">REGISTER</a>
+        </li>
+        
+         <!--  LOGIN -->
+         <li class="nav-item <?php if($title=='Login')echo 'active';?>">
+          <a class="nav-link" href="<?php echo base_url();?>index.php/users/index/login">LOGIN</a>
+        </li>
+
+      </ul>
+    </div>
+
+    </div>
+  </nav>
+ 
+</header>

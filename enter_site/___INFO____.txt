@@ -1,9 +1,0 @@
-file:   .htaccess
-  - omogucava nam da ne pisemo svaki put:   index.php,     localhost/enter_site/
-   nego da odmah pisemo ime kontrolera.
-
-
-// Dobro pravilo:
-  - drzimo kontrolere plural a models singular.
-
-  
