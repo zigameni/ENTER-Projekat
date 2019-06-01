@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['users'] = "users/index";
 
 //For our defoault controller:
-$route['default_controller'] = 'pages/view';
+$route['default_controller'] = 'Admin';
 
 //This is going to get anything that we go to:
 $route['(:any)'] = 'pages/view/$1';
