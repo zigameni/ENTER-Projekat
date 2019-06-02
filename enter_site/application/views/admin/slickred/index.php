@@ -40,7 +40,7 @@
                         
                 <ul>
                     <li><a href="<?php echo site_url("Admin/pokaziIzvodjace"); ?>">Izvodjaci</a></li>
-                    <li><a href="#">PHP</a></li>
+                    <li><a href="<?php echo site_url("Admin/pokaziKarte"); ?>">Karte</a></li>
                     <li><a href="#">Ajax</a></li>
                     <li><a href="#">jQuery</a></li>
                     <li><a href="#">Web design</a></li>
@@ -80,6 +80,17 @@
                     }
                     elseif($naredba == "pocetna"){
                         echo "Hola Mr. Admin!";
+                    }
+                    elseif($naredba == "karte"){
+                        echo "<table> <tr><th>Naziv karte:</th><th>Opis:</th><th>Cena:</th><th>Kolicina:</th></tr>";
+                    
+                        foreach ($karte as $karta) {
+                            echo "<tr><td>".$karta->naziv."</td><td>".$karta->opis." ".$karta->cena."</td><td>".$karta->kolicina."</td> "
+                                    . "<td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/obrisiKartu/".$karta->kartaID). "\">Obrisi ovu vrstu karte</a> </td> </tr>";
+                            
+                        }
+                        echo "</table><br><br>";
+                        echo "<a href=\" ". site_url("Admin/dodajKar"). "\">Dodaj novu vrstu karte</a>";
                     }
                 ?>
         </div>

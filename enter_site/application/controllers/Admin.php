@@ -16,6 +16,7 @@ class Admin extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model("ModelIzvodjac");
+        $this->load->model("ModelKarta");
         $this->load->library("session");
         
   /*      if (($this->session->userdata('korisnik')) == NULL){
@@ -71,7 +72,7 @@ class Admin extends CI_Controller{
             //ispravni podaci
             $this->ModelIzvodjac->dodajIzvodjaca($this->input->post('username'), $this->input->post('password'), $this->input->post('name'), $this->input->post('lastname'),
             $this->input->post('address'), $this->input->post('city'), $this->input->post('state'), $this->input->post('email'));
-            redirect("Admin/index");
+            redirect("Admin/pokaziIzvodjace");
         }
         
     }
@@ -85,6 +86,38 @@ class Admin extends CI_Controller{
         redirect("Admin/pokaziIzvodjace");
     }
     
+    public function pokaziKarte(){
+        $karte = $this->ModelKarta->dohvatiKarte();
+        $naredba = "karte";
+
+        $this->load->view("admin/slickred/index.php",  array('karte'=>$karte,'naredba'=>"karte")); 
+    }
+    
+    public function obrisiKartu($id){
+        $this->ModelKarta->obrisiKartu($id);
+        redirect("Admin/pokaziKarte");
+    }
+    
+    public function dodajKar(){
+        $this->load->view("admin/dodajKartu.php");    
+    }
+    
+    public function dodajKartu(){
+        $this->form_validation->set_rules('naziv','Naziv', 'required');
+        $this->form_validation->set_rules('cena','Cena','required');
+        $this->form_validation->set_rules('kolicina','Kolicina', 'required');
+        $this->form_validation->set_rules('opis','Opis','required');
+        $this->form_validation->set_message("required","Polje {field} je ostalo prazno.");
+        if($this->form_validation->run()==FALSE){
+            //neispravni podaci
+            $this->dodajKar();// ne treba redirect jer na refresh treba da proba da opet nesto doda
+        }
+        else{
+            //ispravni podaci
+            $this->ModelKarta->dodajKartu($this->input->post('naziv'), $this->input->post('opis'), $this->input->post('cena'), $this->input->post('kolicina'));
+            redirect("Admin/pokaziKarte");
+        }
+    }
     //put your code here
     
 }
