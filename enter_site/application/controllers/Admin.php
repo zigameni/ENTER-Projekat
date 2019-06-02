@@ -18,6 +18,7 @@ class Admin extends CI_Controller{
         $this->load->model("ModelIzvodjac");
         $this->load->model("ModelKarta");
         $this->load->model("ModelTermin");
+        $this->load->model("ModelDogadjaj");
         $this->load->library("session");
         
   /*      if (($this->session->userdata('korisnik')) == NULL){
@@ -150,6 +151,38 @@ class Admin extends CI_Controller{
     public function obrisiTermin($id){
         $this->ModelTermin->obrisiTermin($id);
         redirect("Admin/pokaziTermine");
+    }
+    
+    public function rezervisiTermin($id){
+        $this->ModelTermin->rezervisiTermin($id);
+        redirect("Admin/pokaziTermine");
+    }
+    
+    public function pokaziPotvrdjene(){
+        $potvrdjeni = $this->ModelDogadjaj->dohvatiPotvrdjene();
+        $naredba = "potvrdjeni";
+        
+        foreach($potvrdjeni as $element){
+            $element->datum = $this->ModelTermin->dohvatiTDatum($element->terminID);
+            $element->vreme = $this->ModelTermin->dohvatiTVreme($element->terminID);
+        }
+
+        $this->load->view("admin/slickred/index.php",  array('potvrdjeni'=>$potvrdjeni,'naredba'=>"potvrdjeni")); 
+    }
+    
+    public function dohvatiTDatum($id){
+        $rezultat = $this->ModelTermin->dohvatiTDatum($id);
+        echo $rezultat;
+    }
+    
+    public function dohvatiTVreme($id){
+        $rezultat = $this->ModelTermin->dohvatiTVreme($id);
+        echo $rezultat;
+    }
+    
+    public function obrisiDogadjaj($id){
+        $this->ModelDogadjaj->obrisiDogadjaj($id);
+        redirect("Admin/index");
     }
     
 }

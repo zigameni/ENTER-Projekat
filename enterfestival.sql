@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 30, 2019 at 11:35 PM
+-- Generation Time: Jun 02, 2019 at 07:24 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -35,6 +35,29 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`username`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`username`, `password`) VALUES
+('admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_poruke`
+--
+
+DROP TABLE IF EXISTS `admin_poruke`;
+CREATE TABLE IF NOT EXISTS `admin_poruke` (
+  `porukaID` int(14) NOT NULL AUTO_INCREMENT,
+  `naslov` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `sadrzaj` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `posiljalac` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`porukaID`),
+  KEY `posiljalac` (`posiljalac`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -64,10 +87,21 @@ CREATE TABLE IF NOT EXISTS `dogadjaj` (
   `opis` varchar(500) COLLATE utf8_unicode_ci DEFAULT 'Dobar provod vas ceka!',
   `terminID` int(14) NOT NULL,
   `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `potvrdjen` int(2) NOT NULL,
   PRIMARY KEY (`dogadjajID`),
   UNIQUE KEY `terminID` (`terminID`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `dogadjaj`
+--
+
+INSERT INTO `dogadjaj` (`dogadjajID`, `naziv`, `opis`, `terminID`, `username`, `potvrdjen`) VALUES
+(2, 'Zurka 2000te', 'Ludnica zagarantovana', 1, 'Bad Copy', 1),
+(4, 'Narodnjaci', 'Promotivne cene pica', 4, 'Bad Copy', 1),
+(5, 'Bezvezno vece', 'Nemojte da dodjete', 2, 'Bad Copy', 0),
+(6, 'Strani pop', 'Bice hitova!', 3, 'Bad Copy', 1);
 
 -- --------------------------------------------------------
 
@@ -80,6 +114,13 @@ CREATE TABLE IF NOT EXISTS `izvodjac` (
   `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `izvodjac`
+--
+
+INSERT INTO `izvodjac` (`username`) VALUES
+('Bad Copy');
 
 -- --------------------------------------------------------
 
@@ -96,7 +137,16 @@ CREATE TABLE IF NOT EXISTS `karta` (
   `kolicina` int(20) NOT NULL,
   PRIMARY KEY (`kartaID`),
   UNIQUE KEY `naziv` (`naziv`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `karta`
+--
+
+INSERT INTO `karta` (`kartaID`, `naziv`, `opis`, `cena`, `kolicina`) VALUES
+(5, 'Standard', 'Nista specijalno', 1000, 500),
+(6, 'Deluks', 'Prvi red', 6000, 100),
+(7, 'VIP', 'Backroom access ;)', 10000, 50);
 
 -- --------------------------------------------------------
 
@@ -138,11 +188,36 @@ CREATE TABLE IF NOT EXISTS `opsti_korisnik` (
   `ime` text COLLATE utf8_unicode_ci NOT NULL,
   `prezime` text COLLATE utf8_unicode_ci NOT NULL,
   `adresa` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `grad` int(20) NOT NULL,
-  `drzava` int(20) DEFAULT NULL,
-  `email` int(40) NOT NULL,
+  `grad` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `drzava` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`username`),
   UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `opsti_korisnik`
+--
+
+INSERT INTO `opsti_korisnik` (`username`, `password`, `ime`, `prezime`, `adresa`, `grad`, `drzava`, `email`) VALUES
+('Bad Copy', '123', 'Vladan', 'Aksentijevic', 'Kotez', 'Beograd', 'Srbija', '43kotez@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `poruke`
+--
+
+DROP TABLE IF EXISTS `poruke`;
+CREATE TABLE IF NOT EXISTS `poruke` (
+  `porukaID` int(14) NOT NULL AUTO_INCREMENT,
+  `primalac` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `posiljalac` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `naslov` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `sadrzaj` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`porukaID`),
+  KEY `primalac` (`primalac`),
+  KEY `posiljalac` (`posiljalac`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -158,7 +233,20 @@ CREATE TABLE IF NOT EXISTS `termin` (
   `vreme` time NOT NULL,
   `rezervisan` int(2) NOT NULL,
   PRIMARY KEY (`terminID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `termin`
+--
+
+INSERT INTO `termin` (`terminID`, `datum`, `vreme`, `rezervisan`) VALUES
+(1, '2019-06-05', '20:00:00', 0),
+(2, '2019-06-04', '20:00:00', 0),
+(3, '2019-06-05', '22:00:00', 0),
+(4, '2019-06-05', '18:00:00', 0),
+(5, '2019-06-04', '18:00:00', 0),
+(6, '2019-06-04', '22:00:00', 1),
+(12, '0232-02-23', '14:03:00', 1);
 
 -- --------------------------------------------------------
 
@@ -191,6 +279,12 @@ CREATE TABLE IF NOT EXISTS `volontira` (
 --
 
 --
+-- Constraints for table `admin_poruke`
+--
+ALTER TABLE `admin_poruke`
+  ADD CONSTRAINT `admin_poruke_ibfk_1` FOREIGN KEY (`posiljalac`) REFERENCES `opsti_korisnik` (`username`);
+
+--
 -- Constraints for table `clanovi_benda`
 --
 ALTER TABLE `clanovi_benda`
@@ -221,6 +315,13 @@ ALTER TABLE `korisnik`
 ALTER TABLE `kupljena_karta`
   ADD CONSTRAINT `kupljena_karta_ibfk_1` FOREIGN KEY (`kartaID`) REFERENCES `karta` (`kartaID`),
   ADD CONSTRAINT `kupljena_karta_ibfk_2` FOREIGN KEY (`username`) REFERENCES `korisnik` (`username`);
+
+--
+-- Constraints for table `poruke`
+--
+ALTER TABLE `poruke`
+  ADD CONSTRAINT `poruke_ibfk_1` FOREIGN KEY (`primalac`) REFERENCES `opsti_korisnik` (`username`),
+  ADD CONSTRAINT `poruke_ibfk_2` FOREIGN KEY (`posiljalac`) REFERENCES `opsti_korisnik` (`username`);
 
 --
 -- Constraints for table `volonter`

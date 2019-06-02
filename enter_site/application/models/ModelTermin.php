@@ -37,4 +37,27 @@ class ModelTermin extends CI_Model{
         $this->db->delete("termin");
  
     } 
+    
+    public function rezervisiTermin($id){
+    /*    $this->db->where("terminID", $id);
+        $this->db->delete("termin"); */
+        $this->db->set('rezervisan', 1);
+        $this->db->where('terminID', $id);
+        $this->db->update('termin');
+    }
+    
+    public function dohvatiTDatum($id){
+        $this->db->where("terminID", $id);
+        $this->db->from("termin");
+        $query = $this->db->get();
+        return $query->row()->datum;
+    }
+    
+    public function dohvatiTVreme($id){
+        $this->db->where("terminID", $id);
+        $this->db->from("termin");
+        $query = $this->db->get();
+        return $query->row()->vreme;
+    }
+    
 }

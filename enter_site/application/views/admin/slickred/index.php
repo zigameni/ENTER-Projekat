@@ -42,8 +42,8 @@
                     <li><a href="<?php echo site_url("Admin/pokaziIzvodjace"); ?>">Izvodjaci</a></li>
                     <li><a href="<?php echo site_url("Admin/pokaziKarte"); ?>">Karte</a></li>
                     <li><a href="<?php echo site_url("Admin/pokaziTermine"); ?>">Termini</a></li>
-                    <li><a href="#">jQuery</a></li>
-                    <li><a href="#">Web design</a></li>
+                    <li><a href="<?php echo site_url("Admin/pokaziPotvrdjene"); ?>">Dogadjaj</a></li>
+                    <li><a href="#">Zahtevi</a></li>
                     <li><a href="#">Web Programming</a></li>
                     <li><a href="#">Content Creation</a></li>
                     <li><a href="#">Internet Marketing</a></li>
@@ -70,7 +70,7 @@
                         echo "<table> <tr><th>Izvodjaci:</th></tr>";
                     
                         foreach ($izvodjaci as $izvodjac) {
-                            echo "<tr><td>".$izvodjac->username."</td><td>".$izvodjac->ime." ".$izvodjac->prezime."</td><td>".$izvodjac->email."</td> "
+                            echo "<tr><td>".$izvodjac->username."</td><td>".$izvodjac->ime."</td><td> ".$izvodjac->prezime."</td><td>".$izvodjac->email."</td> "
                                     . "<td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/obrisiIzvodjaca/".$izvodjac->username). "\">Obrisi ovog izvodjaca</a> </td> </tr>";
                             
                         }
@@ -85,7 +85,7 @@
                         echo "<table> <tr><th>Naziv karte:</th><th>Opis:</th><th>Cena:</th><th>Kolicina:</th></tr>";
                     
                         foreach ($karte as $karta) {
-                            echo "<tr><td>".$karta->naziv."</td><td>".$karta->opis." ".$karta->cena."</td><td>".$karta->kolicina."</td> "
+                            echo "<tr><td>".$karta->naziv."</td><td>".$karta->opis."</td><td> ".$karta->cena."</td><td>".$karta->kolicina."</td> "
                                     . "<td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/obrisiKartu/".$karta->kartaID). "\">Obrisi ovu vrstu karte</a> </td> </tr>";
                             
                         }
@@ -96,12 +96,23 @@
                         echo "<table> <tr><th>Datum termina:</th><th>Vreme:</th><th>Rezervisan:</th></tr>";
                     
                         foreach ($termini as $termin) {
-                            echo "<tr><td>".$termin->datum."</td><td>".$termin->vreme." ".$termin->rezervisan."</td> "
+                            echo "<tr><td>".$termin->datum."</td><td>".$termin->vreme."</td><td> ".$termin->rezervisan."</td> "
                                     . "<td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/obrisiTermin/".$termin->terminID). "\">Obrisi ovaj termin</a> </td> </tr>";
                             
                         }
                         echo "</table><br><br>";
                         echo "<a href=\" ". site_url("Admin/dodajTer"). "\">Dodaj novi termin</a>";
+                    }
+                    elseif($naredba == "potvrdjeni"){
+                        echo "<table> <tr><th>Naziv dogadjaja:</th><th>Izvodjac:</th><th>Opis:</th><th>Datum:</th><th>Vreme:</th></tr>";
+                    
+                        foreach ($potvrdjeni as $potvrdjen) {
+                            echo "<tr><td>".$potvrdjen->naziv."</td><td>".$potvrdjen->username."</td><td> ".$potvrdjen->opis."</td><td> ". $potvrdjen->datum ."</td> <td> ". $potvrdjen->vreme ."</td> "
+                                    . "<td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/obrisiDogadjaj/".$potvrdjen->dogadjajID). "\">Obrisi ovaj dogadjaj</a> </td> </tr>";
+                            
+                        }
+                        echo "</table><br><br>";
+    //                    echo "<a href=\" ". site_url("Admin/dodajTer"). "\">Dodaj novi termin</a>";
                     }
                 ?>
         </div>
