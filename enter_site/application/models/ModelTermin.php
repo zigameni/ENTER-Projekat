@@ -46,6 +46,14 @@ class ModelTermin extends CI_Model{
         $this->db->update('termin');
     }
     
+    public function oslobodiTermin($id){
+    /*    $this->db->where("terminID", $id);
+        $this->db->delete("termin"); */
+        $this->db->set('rezervisan', 0);
+        $this->db->where('terminID', $id);
+        $this->db->update('termin');
+    }
+    
     public function dohvatiTDatum($id){
         $this->db->where("terminID", $id);
         $this->db->from("termin");

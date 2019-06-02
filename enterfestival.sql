@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 02, 2019 at 07:24 PM
+-- Generation Time: Jun 02, 2019 at 10:35 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -91,17 +91,23 @@ CREATE TABLE IF NOT EXISTS `dogadjaj` (
   PRIMARY KEY (`dogadjajID`),
   UNIQUE KEY `terminID` (`terminID`),
   KEY `username` (`username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `dogadjaj`
 --
 
 INSERT INTO `dogadjaj` (`dogadjajID`, `naziv`, `opis`, `terminID`, `username`, `potvrdjen`) VALUES
-(2, 'Zurka 2000te', 'Ludnica zagarantovana', 1, 'Bad Copy', 1),
-(4, 'Narodnjaci', 'Promotivne cene pica', 4, 'Bad Copy', 1),
-(5, 'Bezvezno vece', 'Nemojte da dodjete', 2, 'Bad Copy', 0),
-(6, 'Strani pop', 'Bice hitova!', 3, 'Bad Copy', 1);
+(7, 'Zabavnjaci vece', 'Samo veselo!', 6, 'MF DOOM', 1),
+(8, 'Electronica', '0010 0011', 12, 'Com Truise', 1),
+(10, 'Rejv zurka', 'Brza muzika za brze ljude', 14, 'RJD2', 1),
+(11, 'Chill zona', 'Just relax', 15, 'Boards of Canada', 0),
+(12, 'Rap vece', 'Rhymes for dimes', 16, 'MF DOOM', 0),
+(14, 'Reggae zurka', 'Opusteno nasmejano', 2, 'MF DOOM', 0),
+(15, 'Hip hop histerija', 'Maksimalno sirovo', 3, 'Bad Copy', 0),
+(16, 'Drum n bass zurka', 'Da, jos uvek postoji', 4, 'Com Truise', 0),
+(18, 'Vaporwave vece', 'e s t e t i k a', 13, 'Bad Copy', 0),
+(23, 'EUROBEAT zurka', 'ITALIA FORZA', 18, 'Bad Copy', 0);
 
 -- --------------------------------------------------------
 
@@ -120,7 +126,12 @@ CREATE TABLE IF NOT EXISTS `izvodjac` (
 --
 
 INSERT INTO `izvodjac` (`username`) VALUES
-('Bad Copy');
+('Bad Copy'),
+('Boards of Canada'),
+('Com Truise'),
+('MF DOOM'),
+('RJD2'),
+('Sajsi MC');
 
 -- --------------------------------------------------------
 
@@ -200,7 +211,12 @@ CREATE TABLE IF NOT EXISTS `opsti_korisnik` (
 --
 
 INSERT INTO `opsti_korisnik` (`username`, `password`, `ime`, `prezime`, `adresa`, `grad`, `drzava`, `email`) VALUES
-('Bad Copy', '123', 'Vladan', 'Aksentijevic', 'Kotez', 'Beograd', 'Srbija', '43kotez@gmail.com');
+('Bad Copy', '123', 'Vladan', 'Aksentijevic', 'Kotez', 'Beograd', 'Srbija', '43kotez@gmail.com'),
+('Boards of Canada', '123', 'Boban', 'Nabob', 'Vojvode Stepe', 'Ontario', 'Kanada', 'boc@gmail.com'),
+('Com Truise', '123', 'Bobi', 'Gromada', 'Ulica', 'Worcestershire', 'Great Britain', 'comtruise@gmail.com'),
+('MF DOOM', '123', 'Stephen', 'Dumile', '1300 kaplara', 'New York', 'USA', 'allcaps@gmail.com'),
+('RJD2', '123', 'Adam', 'Savage', 'omladinskih brigada', 'Boston', 'USA', 'rjd2@gmail.com'),
+('Sajsi MC', '123', 'Ivana', 'Rasic', 'Blokovi', 'Beograd', 'Srbija', 'sighcee@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -233,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `termin` (
   `vreme` time NOT NULL,
   `rezervisan` int(2) NOT NULL,
   PRIMARY KEY (`terminID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `termin`
@@ -246,7 +262,13 @@ INSERT INTO `termin` (`terminID`, `datum`, `vreme`, `rezervisan`) VALUES
 (4, '2019-06-05', '18:00:00', 0),
 (5, '2019-06-04', '18:00:00', 0),
 (6, '2019-06-04', '22:00:00', 1),
-(12, '0232-02-23', '14:03:00', 1);
+(12, '0232-02-23', '14:03:00', 1),
+(13, '0212-12-12', '02:31:00', 0),
+(14, '0231-03-21', '02:13:00', 1),
+(15, '0213-03-12', '02:12:00', 0),
+(16, '0021-12-12', '00:02:00', 0),
+(17, '0012-12-12', '00:12:00', 0),
+(18, '0012-12-12', '12:12:00', 0);
 
 -- --------------------------------------------------------
 

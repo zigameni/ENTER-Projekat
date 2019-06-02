@@ -181,8 +181,32 @@ class Admin extends CI_Controller{
     }
     
     public function obrisiDogadjaj($id){
+        $dogadjaj = $this->ModelDogadjaj->dohvatiDogadjaj($id);
+        $this->ModelTermin->oslobodiTermin($dogadjaj->terminID);
+        
         $this->ModelDogadjaj->obrisiDogadjaj($id);
         redirect("Admin/index");
+    }
+    
+    public function pokaziZahteve(){
+        $zahtevi = $this->ModelDogadjaj->dohvatiZahteve();
+        $naredba = "zahtevi";
+        
+        foreach($zahtevi as $element){
+            $element->datum = $this->ModelTermin->dohvatiTDatum($element->terminID);
+            $element->vreme = $this->ModelTermin->dohvatiTVreme($element->terminID);
+        }
+
+        $this->load->view("admin/slickred/index.php",  array('zahtevi'=>$zahtevi,'naredba'=>"zahtevi")); 
+    }
+    
+    public function potvrdiDogadjaj($id){
+        $dogadjaj = $this->ModelDogadjaj->dohvatiDogadjaj($id);
+        $this->ModelTermin->rezervisiTermin($dogadjaj->terminID);
+        
+        $this->ModelDogadjaj->potvrdiDogadjaj($id);
+        redirect("Admin/pokaziZahteve");
+        
     }
     
 }

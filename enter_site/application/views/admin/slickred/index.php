@@ -9,24 +9,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>SlickRed | florida web design</title>
+<title>ENTER Admin | Control panel</title>
 </head>
 
 <body>
 <div id="container">
 		<div id="header">
-        	<h1>Slick<span class="off">Red</span></h1>
-            <h2>A template by Bryant Smith</h2>
+        	<h1>ENTER<span class="off">Admin</span></h1>
+            <h2>i can't into html</h2>
         </div>   
         
         <div id="menu">
         	<ul>
-            	<li class="menuitem"><a href="#">Home</a></li>
-                <li class="menuitem"><a href="#">About</a></li>
-                <li class="menuitem"><a href="#">Products</a></li>
-                <li class="menuitem"><a href="#">Services</a></li>
-                <li class="menuitem"><a href="#">Design</a></li>
-              <li class="menuitem"><a href="#">Contact</a></li>
+            	<li class="menuitem"><a href="#">#</a></li>
+                <li class="menuitem"><a href="#">#</a></li>
+                <li class="menuitem"><a href="#">#</a></li>
+                <li class="menuitem"><a href="#">#</a></li>
+                <li class="menuitem"><a href="#">#</a></li>
+              <li class="menuitem"><a href="#">#</a></li>
             </ul>
         </div>
         
@@ -43,11 +43,11 @@
                     <li><a href="<?php echo site_url("Admin/pokaziKarte"); ?>">Karte</a></li>
                     <li><a href="<?php echo site_url("Admin/pokaziTermine"); ?>">Termini</a></li>
                     <li><a href="<?php echo site_url("Admin/pokaziPotvrdjene"); ?>">Dogadjaj</a></li>
-                    <li><a href="#">Zahtevi</a></li>
-                    <li><a href="#">Web Programming</a></li>
-                    <li><a href="#">Content Creation</a></li>
-                    <li><a href="#">Internet Marketing</a></li>
-                    <li><a href="#">XHTML Templates</a></li>
+                    <li><a href="<?php echo site_url("Admin/pokaziZahteve"); ?>">Zahtevi</a></li>
+                    <li><a href="#">#</a></li>
+                    <li><a href="#">#</a></li>
+                    <li><a href="#">#</a></li>
+                    <li><a href="#">#</a></li>
                 </ul>
 </div>
                 
@@ -114,11 +114,23 @@
                         echo "</table><br><br>";
     //                    echo "<a href=\" ". site_url("Admin/dodajTer"). "\">Dodaj novi termin</a>";
                     }
+                    elseif($naredba == "zahtevi"){
+                        echo "<table> <tr><th>Naziv dogadjaja:</th><th>Izvodjac:</th><th>Opis:</th><th>Datum:</th><th>Vreme:</th></tr>";
+                    
+                        foreach ($zahtevi as $zahtev) {
+                            echo "<tr><td>".$zahtev->naziv."</td><td>".$zahtev->username."</td><td> ".$zahtev->opis."</td><td> ". $zahtev->datum ."</td> <td> ". $zahtev->vreme ."</td> "
+                                    . "<td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/potvrdiDogadjaj/".$zahtev->dogadjajID). "\">Odobri ovaj zahtev</a> </td> "
+                                    ." <td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/obrisiDogadjaj/".$zahtev->dogadjajID). "\">Obrisi ovaj zahtev</a> </td> </tr>";
+                            
+                        }
+                        echo "</table><br><br>";
+    //                    echo "<a href=\" ". site_url("Admin/dodajTer"). "\">Dodaj novi termin</a>";
+                    }
                 ?>
         </div>
         <div id="content_bottom"></div>
             
-            <div id="footer"><h3><a href="http://www.bryantsmith.com">florida web design</a></h3></div>
+            <div id="footer"><h3></h3></div>
       </div>
    </div>
 </body>

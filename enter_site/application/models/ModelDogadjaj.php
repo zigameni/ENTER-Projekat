@@ -46,4 +46,16 @@ class ModelDogadjaj extends CI_Model{
         $this->db->delete("dogadjaj");
  
     } 
+    
+    public function dohvatiDogadjaj($id){
+        $this->db->where("dogadjajID", $id);
+        $query = $this->db->get('dogadjaj');
+        return $query->row();
+    }
+    
+    public function potvrdiDogadjaj($id){
+        $this->db->set('potvrdjen', 1);
+        $this->db->where('dogadjajID', $id);
+        $this->db->update('dogadjaj');
+    }
 }
