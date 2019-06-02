@@ -41,7 +41,7 @@
                 <ul>
                     <li><a href="<?php echo site_url("Admin/pokaziIzvodjace"); ?>">Izvodjaci</a></li>
                     <li><a href="<?php echo site_url("Admin/pokaziKarte"); ?>">Karte</a></li>
-                    <li><a href="#">Ajax</a></li>
+                    <li><a href="<?php echo site_url("Admin/pokaziTermine"); ?>">Termini</a></li>
                     <li><a href="#">jQuery</a></li>
                     <li><a href="#">Web design</a></li>
                     <li><a href="#">Web Programming</a></li>
@@ -91,6 +91,17 @@
                         }
                         echo "</table><br><br>";
                         echo "<a href=\" ". site_url("Admin/dodajKar"). "\">Dodaj novu vrstu karte</a>";
+                    }
+                    elseif($naredba == "termini"){
+                        echo "<table> <tr><th>Datum termina:</th><th>Vreme:</th><th>Rezervisan:</th></tr>";
+                    
+                        foreach ($termini as $termin) {
+                            echo "<tr><td>".$termin->datum."</td><td>".$termin->vreme." ".$termin->rezervisan."</td> "
+                                    . "<td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/obrisiTermin/".$termin->terminID). "\">Obrisi ovaj termin</a> </td> </tr>";
+                            
+                        }
+                        echo "</table><br><br>";
+                        echo "<a href=\" ". site_url("Admin/dodajTer"). "\">Dodaj novi termin</a>";
                     }
                 ?>
         </div>

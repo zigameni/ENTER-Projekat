@@ -17,6 +17,7 @@ class Admin extends CI_Controller{
         parent::__construct();
         $this->load->model("ModelIzvodjac");
         $this->load->model("ModelKarta");
+        $this->load->model("ModelTermin");
         $this->load->library("session");
         
   /*      if (($this->session->userdata('korisnik')) == NULL){
@@ -118,6 +119,37 @@ class Admin extends CI_Controller{
             redirect("Admin/pokaziKarte");
         }
     }
-    //put your code here
+    
+    public function pokaziTermine(){
+        $termini = $this->ModelTermin->dohvatiTermine();
+        $naredba = "termini";
+
+        $this->load->view("admin/slickred/index.php",  array('termini'=>$termini,'naredba'=>"termini")); 
+    }
+    
+    public function dodajTer(){
+        $this->load->view("admin/dodajTermin.php"); 
+    }
+    
+    public function dodajTermin(){
+        $this->form_validation->set_rules('datum','Datum', 'required');
+        $this->form_validation->set_rules('vreme','Vreme','required');
+
+        $this->form_validation->set_message("required","Polje {field} je ostalo prazno.");
+        if($this->form_validation->run()==FALSE){
+            //neispravni podaci
+            $this->dodajTer();// ne treba redirect jer na refresh treba da proba da opet nesto doda
+        }
+        else{
+            //ispravni podaci
+            $this->ModelTermin->dodajTermin($this->input->post('datum'), $this->input->post('vreme'));
+            redirect("Admin/pokaziTermine");
+        }
+    }
+    
+    public function obrisiTermin($id){
+        $this->ModelTermin->obrisiTermin($id);
+        redirect("Admin/pokaziTermine");
+    }
     
 }
