@@ -37,12 +37,12 @@
       <ul class="navbar-nav ml-auto">
         <!--  REGISTER -->
         <li class="nav-item <?php if($title=='Register')echo 'active';?>">
-          <a class="nav-link" href="<?php echo base_url();?>index.php/users/index/register">REGISTER</a>
+          <a class="nav-link" href="<?php echo base_url();?>index.php/login/register">REGISTER</a>
         </li>
         
          <!--  LOGIN -->
          <li class="nav-item <?php if($title=='Login')echo 'active';?>">
-          <a class="nav-link" href="<?php echo base_url();?>index.php/users/index/login">LOGIN</a>
+          <a class="nav-link" href="<?php echo base_url();?>index.php/login/login">SIGN IN</a>
         </li>
 
       </ul>

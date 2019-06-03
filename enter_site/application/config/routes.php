@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -53,12 +54,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['users'] = "users/index";
 
 //For our defoault controller:
-$route['default_controller'] = 'guest';
+$route['default_controller'] = 'Guest';
 
 //This is going to get anything that we go to:
 $route['(:any)'] = 'pages/view/$1';
 
 
+
+
+$route['login'] = 'login/login';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
