@@ -44,7 +44,7 @@
                     <li><a href="<?php echo site_url("Admin/pokaziTermine"); ?>">Termini</a></li>
                     <li><a href="<?php echo site_url("Admin/pokaziPotvrdjene"); ?>">Dogadjaj</a></li>
                     <li><a href="<?php echo site_url("Admin/pokaziZahteve"); ?>">Zahtevi</a></li>
-                    <li><a href="#">#</a></li>
+                    <li><a href="<?php echo site_url("Admin/pokaziAdminPoruke"); ?>">Poruke</a></li>
                     <li><a href="#">#</a></li>
                     <li><a href="#">#</a></li>
                     <li><a href="#">#</a></li>
@@ -125,6 +125,18 @@
                         }
                         echo "</table><br><br>";
     //                    echo "<a href=\" ". site_url("Admin/dodajTer"). "\">Dodaj novi termin</a>";
+                    }
+                    elseif($naredba == "adminporuke"){
+                        echo "<table> <tr><th>Naslov poruke:</th><th>Sadrzaj:</th><th>Posiljalac:</th></tr>";
+                    
+                        foreach ($adminporuke as $adminporuka) {
+                            echo "<tr><td>".$adminporuka->naslov."</td><td>".$adminporuka->sadrzaj."</td><td> ".$adminporuka->posiljalac."</td> "
+                                    . "<td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/odgovoriNaPor/".$adminporuka->porukaID). "\">Odgovori na ovu poruku</a> </td> "
+                                    . "<td> &nbsp;&nbsp;&nbsp;&nbsp; <a href=\" ". site_url("Admin/obrisiAdminPoruku/".$adminporuka->porukaID). "\">Obrisi ovu poruku</a> </td> </tr>";
+                            
+                        }
+                        echo "</table><br><br>";
+  //                      echo "<a href=\" ". site_url("Admin/dodajKar"). "\">Dodaj novu vrstu karte</a>";
                     }
                 ?>
         </div>

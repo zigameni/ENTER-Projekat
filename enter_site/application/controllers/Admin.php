@@ -19,6 +19,8 @@ class Admin extends CI_Controller{
         $this->load->model("ModelKarta");
         $this->load->model("ModelTermin");
         $this->load->model("ModelDogadjaj");
+        $this->load->model("ModelAdminPoruke");
+        $this->load->model("ModelPoruke");
         $this->load->library("session");
         
   /*      if (($this->session->userdata('korisnik')) == NULL){
@@ -207,6 +209,42 @@ class Admin extends CI_Controller{
         $this->ModelDogadjaj->potvrdiDogadjaj($id);
         redirect("Admin/pokaziZahteve");
         
+    }
+    
+    public function pokaziAdminPoruke(){
+        $adminporuke = $this->ModelAdminPoruke->dohvatiAdminPoruke();
+        $naredba = "adminporuke";
+
+        $this->load->view("admin/slickred/index.php",  array('adminporuke'=>$adminporuke,'naredba'=>"adminporuke"));
+    }
+    
+    public function obrisiAdminPoruku(){
+        $this->ModelAdminPoruke->obrisiAdminPoruku($id);
+        redirect("Admin/pokaziAdminPoruke");
+    }
+    
+    public function odgovoriNaPor($adminporuka){
+        $this->load->view("admin/odgovoriNaPoruku.php", array('adminporuka' => $adminporuka));
+    }
+    
+    public function odgovoriNaPoruku($adminporuka){
+        $this->form_validation->set_rules('naslov','Naslov','required');
+        $this->form_validation->set_rules('sadrzaj','Sadrzaj', 'required');
+        
+        $this->form_validation->set_message("required","Polje {field} je ostalo prazno.");
+        if($this->form_validation->run()==FALSE){
+            //neispravni podaci
+            $this->odgovoriNaPor($adminporuka);// ne treba redirect jer na refresh treba da proba da opet nesto doda
+        }
+        else{
+            //ispravni podaci
+            $rezultat = $this->ModelAdminPoruke->dohvatiAdminPoruku($adminporuka);
+            
+            $this->ModelPoruke->dodajPoruku($rezultat->posiljalac, NULL, $this->input->post('naslov'), $this->input->post('sadrzaj'));
+            
+            $this->ModelAdminPoruke->obrisiAdminPoruku($rezultat->porukaID);
+            redirect("Admin/pokaziAdminPoruke");
+        }
     }
     
 }
