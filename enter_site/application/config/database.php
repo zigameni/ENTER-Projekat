@@ -79,7 +79,7 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => '',
 
-	'database' => 'enter_db',
+	'database' => 'enterfestival',
 
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 02, 2019 at 10:35 PM
+-- Generation Time: Jun 03, 2019 at 12:00 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -56,7 +56,19 @@ CREATE TABLE IF NOT EXISTS `admin_poruke` (
   `posiljalac` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`porukaID`),
   KEY `posiljalac` (`posiljalac`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `admin_poruke`
+--
+
+INSERT INTO `admin_poruke` (`porukaID`, `naslov`, `sadrzaj`, `posiljalac`) VALUES
+(6, 'hey admin', 'tell me a story', 'Bad Copy'),
+(8, 'yo wassup', 'my man', 'RJD2'),
+(10, 'got a minute?', 'need assistance', 'Com Truise'),
+(11, 'got more sole', 'than a sock with a hole', 'MF DOOM'),
+(12, 'yeeee', 'haaaaw', 'RJD2'),
+(13, 'asdf', 'fdsa', 'Sajsi MC');
 
 -- --------------------------------------------------------
 
@@ -234,7 +246,20 @@ CREATE TABLE IF NOT EXISTS `poruke` (
   PRIMARY KEY (`porukaID`),
   KEY `primalac` (`primalac`),
   KEY `posiljalac` (`posiljalac`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `poruke`
+--
+
+INSERT INTO `poruke` (`porukaID`, `primalac`, `posiljalac`, `naslov`, `sadrzaj`) VALUES
+(2, 'MF DOOM', NULL, 'gde si legendo', 'sta se radi'),
+(3, 'RJD2', NULL, 'od admina', 'reci baki'),
+(4, 'Bad Copy', NULL, 'im here', 'what\'s the problem'),
+(5, 'Com Truise', NULL, 'from admin', 'hey thanks!'),
+(6, 'Bad Copy', NULL, 'obi wan here', 'huan'),
+(7, 'Sajsi MC', NULL, 'hey Sajsi', 'what\'s up'),
+(8, 'Bad Copy', NULL, 'help', 'is on the way');
 
 -- --------------------------------------------------------
 
