@@ -26,8 +26,8 @@ class ModelLogin extends CI_Model{
   }
   */
 
-  //Fetch user 
-  public function fetchUser($email){
+  //Fetch user by email 
+  public function fetchUserByEmail($email){
     $this->db->reset_query();
     //$this->db->select('*');
     $this->db->from('opsti_korisnik');
@@ -38,6 +38,19 @@ class ModelLogin extends CI_Model{
 
     return $row;
   }
+
+  //Fetch user my username
+  public function fetchUserByUsername($username){
+    $this->db->reset_query();
+    //$this->db->select('*');
+    $this->db->from('opsti_korisnik');
+    $this->db->where("username", $username);
+    $query=$this->db->get();
+    
+    $row = $query->row();
+
+    return $row;
+  }  
 
   public function isType($username, $table){
     $this->db->reset_query();
@@ -59,9 +72,20 @@ class ModelLogin extends CI_Model{
     $grad= $data1['city'];
     $drzava= $data1['country'];
     $email= $data1['email'];
-    $active= '1';
+   // $active= '1';
+
+    /**
+     * username
+* password
+* ime
+* prezime
+* adresa
+* grad
+* drzava
+* email
+     */
     
-    $query="insert into opsti_korisnik values('$username','$password','$ime','$prezime','$adresa','$grad','$drzava','$email','', $active)";
+    $query="insert into opsti_korisnik values('$username','$password','$ime','$prezime','$adresa','$grad','$drzava','$email')";
     $this->db->query($query);
     /*
     $data = array(

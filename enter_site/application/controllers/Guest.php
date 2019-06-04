@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+// @author Gazmend Shehu  sg160664d@student.etf.bg.ac.rs
+/**
+ * Guest - controller for Guest functionalities
+ *
+ * @author Gazmend
+ * @version 1.0
+ */
 class Guest extends CI_Controller {
 
 
@@ -10,7 +16,8 @@ class Guest extends CI_Controller {
 		//GLOBAL VARIABLES TO SHOW ERRORS
 		$_SESSION['errorM'] = '';
 		$_SESSION['errorMessage'] ='';
-    //If page does not exist
+
+    //If page does not exist, show a 404 error
     if(!file_exists(APPPATH.'views/pages/'.$page.'.php')){
       show_404();
     }
@@ -22,37 +29,5 @@ class Guest extends CI_Controller {
     $this->load->view('pages/'.$page, $data);
     $this->load->view('templates/footer');
   } //index
-  
 
-  /**
-	 * Loguje korisnika odgovarajuce, ili vraca na pocetnu stranicu sa greskom
-	 *
-	 * @return void
-	 */
-	public function login(){
-		if ($this->input->post('email') == NULL || $this->input->post('password') == NULL)
-			return $this->bad_login();
-		$user = $this->check($this->input->post('email'), $this->input->post('password'));
-		if ($user == NULL)
-			$this->bad_login();
-		else{
-			$this->session->set_userdata(lcfirst($user), 1);
-			$this->session->set_userdata('employee', $this->ModelEmployee->getAccount($this->input->post('email'), $user));
-			$this->session->set_userdata('account', $this->ModelEmployee->getAccount($this->input->post('email'), 'Account'));
-			redirect($user);
-		}
-  }
-  
-
- 
-
-
-
-
-
-
-
-
-
-  
 } //COntroller

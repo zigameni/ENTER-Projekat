@@ -1,13 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+// @author Gazmend Shehu  sg160664d@student.etf.bg.ac.rs
+/**
+ * Login - controller for all Login/Register functionalities
+ *
+ * @author Gazmend
+ * @version 1.0
+ */
 class Login extends CI_Controller {
 
+  //CONSTRUCTOR
   public function __construct(){
     parent::__construct();
     $this->load->Model('ModelLogin');
   }
 
+  /**
+   * Registruje korisnika, i sacuva podatke na database
+   */
   public function register(){
 
     $MIN_LENGTH = 3;
@@ -17,7 +27,6 @@ class Login extends CI_Controller {
       // Process form
       echo print_r($_POST);
 
-      
       $data['first_name']   = $_POST['firstname'];
       $data['last_name']    = $_POST['lastname'];
       $data['user_name']    = $_POST['username'];
@@ -79,17 +88,13 @@ class Login extends CI_Controller {
         $data['c_password'] ='';
       } else {
         
-        $data['password'] = md5($data['password']);
+        //$data['password'] = md5($data['password']);
         $this->ModelLogin->insertUser($data);
                // $this->db->insert('opsti_korisnik', $data1);
-
-               
-               $_SESSION['errorM'] = '1';
-               $_SESSION['errorMessage'] ='U HAVE BEEN REGISTERD';
-        
+        $_SESSION['errorM'] = '1';
+        $_SESSION['errorMessage'] ='U HAVE BEEN REGISTERD';
          
         redirect('login/login');
-        echo "DONEEEEEEE";
       }
 
       //if email exists, error=1, message= email already exists;
@@ -135,14 +140,25 @@ class Login extends CI_Controller {
       $data['email']        = $_POST['email'];
       $data['password']     = $_POST['password'];
       $email = $data['email'];
+      $pass = $data['password'];
       //if username exists, error=1, message=username vec postoji;
       //$query ="SELECT * FROM `opsti_korisnik` WHERE email = '$email'";
 
-      $result = $this->ModelLogin->fetchUser($email);
+
+      //Prvo gledamo da li je input bio username ili email
+      if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        //Valid email, Fetch userdata by email 
+        $result = $this->ModelLogin->fetchUserByEmail($email);
+      }else {
+        $result = $this->ModelLogin->fetchUserByUsername($email);
+      }
+
       
       if(isset($result)){
-        $pass = md5($data['password']);
-        
+        //Ako zelimo da hashiramo passworde
+        //$pass = md5($data['password']);
+        $pass = $data['password'];
+
         if($result->password == $pass){
              //redirect to user dashboard 
               
@@ -173,8 +189,24 @@ class Login extends CI_Controller {
           $data['password']    = '';
         }
       } else {
+
+        //Check if it is admin
+        $adminvar = $this->isAdmin($email);
+        if($adminvar != null){
+          $adminvar->password;
+          if($pass == $adminvar->password){
+            echo "WE ARE THE BESTTTTTTTTTT";
+
+            redirect('admin/index');
+
+          } else {
+            
+          }
+        } else {
+            //echo "THIS ISSSSS NOT ADMINNNN";
+          }
           $data['error'] = '1';
-          $data['message'] = 'WEEE RESULT NORESULT = 0';
+          $data['message'] = 'Email or password is incorrect!';
 
           $data['password']    = '';
       }
@@ -266,10 +298,14 @@ public function recover(){
   
 public function isAdmin($username){
   $result = $this->ModelLogin->isType($username, 'admin');
+  return $result;
+  /**
   if(isset($result)){
     return true;
   }else 
     return false;
+
+     */
 }
 
 
