@@ -265,6 +265,8 @@ class Admin extends CI_Controller{
         $dogadjaj = $this->ModelDogadjaj->dohvatiDogadjaj($id);
         $this->ModelTermin->oslobodiTermin($dogadjaj->terminID);
         
+        $this->ModelPoruke->dodajPoruku($dogadjaj->username, NULL, 'Automatska poruka', 'Vas dogadjaj je obrisan!');
+        
         $this->ModelDogadjaj->obrisiDogadjaj($id);
         redirect("Admin/index");
     }
@@ -292,6 +294,8 @@ class Admin extends CI_Controller{
     public function potvrdiDogadjaj($id){
         $dogadjaj = $this->ModelDogadjaj->dohvatiDogadjaj($id);
         $this->ModelTermin->rezervisiTermin($dogadjaj->terminID);
+        
+        $this->ModelPoruke->dodajPoruku($dogadjaj->username, NULL, 'Automatska poruka', 'Vas dogadjaj je odobren!');
         
         $this->ModelDogadjaj->potvrdiDogadjaj($id);
         redirect("Admin/pokaziZahteve");
