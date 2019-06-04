@@ -1,3 +1,6 @@
+<?php
+    // @author Dusan Galic  gd140092d@student.etf.bg.ac.rs
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <style>
 <?php
@@ -47,7 +50,7 @@
                     <li><a href="<?php echo site_url("Admin/pokaziAdminPoruke"); ?>">Poruke</a></li>
                     <li><a href="#">#</a></li>
                     <li><a href="#">#</a></li>
-                    <li><a href="#">#</a></li>
+                    <li><a href="<?php echo site_url("Admin/logout"); ?>">Logout</a></li>
                 </ul>
 </div>
                 
