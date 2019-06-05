@@ -134,6 +134,11 @@ class Login extends CI_Controller {
 //======================================== LOGIN function ==================================================
   public function login(){
     //check for post 
+    if($this->session->userdata('logged_on')=='1'){
+      $this->go_to_dashboard();
+    }
+
+
     if($_SERVER['REQUEST_METHOD']=='POST'){
      
       
@@ -141,9 +146,6 @@ class Login extends CI_Controller {
       $data['password']     = $_POST['password'];
       $email = $data['email'];
       $pass = $data['password'];
-      //if username exists, error=1, message=username vec postoji;
-      //$query ="SELECT * FROM `opsti_korisnik` WHERE email = '$email'";
-
 
       //Prvo gledamo da li je input bio username ili email
       if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -155,24 +157,27 @@ class Login extends CI_Controller {
 
       
       if(isset($result)){
-        //Ako zelimo da hashiramo passworde
         //$pass = md5($data['password']);
         $pass = $data['password'];
 
         if($result->password == $pass){
              //redirect to user dashboard 
-              
-            if($this->isAdmin($result->username)){
+            
+             //Check if it is izvodjac
+            if($this->isIzvodjac($result->username)->username == $result->username){
+              // User is izvodjac 
+             $this->setUser('izvodjac', $result->email, $result->username, $result->password);
+              redirect(base_url());
 
-               echo "WE ARE THE BESTTTTTTTTTT"; 
-                // redirect ot admin dashbord
-            } //else if(isIzvodjac($result->username)){
-                // redirect to izvidjac dashboard
-            //} else if(isModerator($result->username)){
-                //redirect to modreator dashboard
-            //} else if(is($sa)){
-
-            //}
+            }else if($this->isVolonter($result->username)->username == $result->username){
+              // User is Volonter
+              $this->setUser('volonter', $result->email, $result->username, $result->password);
+              redirect(base_url());
+            }else {
+              // User is Korisnik
+              $this->setUser('korisnik', $result->email, $result->username, $result->password);
+              redirect(base_url());
+            }
 
              // THISSSSSS ISSS WHEREEEE WE LOADDDD THE DASHSSSH BOARDDDD
              $data['error'] = '1';
@@ -193,11 +198,21 @@ class Login extends CI_Controller {
         //Check if it is admin
         $adminvar = $this->isAdmin($email);
         if($adminvar != null){
-          $adminvar->password;
+          //$adminvar->password;
           if($pass == $adminvar->password){
             echo "WE ARE THE BESTTTTTTTTTT";
-
-            redirect('admin/index');
+            $user = 'admin';
+            $username = $adminvar->username;
+          /**
+           * User types:
+           *  - admin
+           *  - korisnik
+           *  - volonter
+           *  - izvodjac
+           */
+          //Setting the user
+          $this->setUser($user, $email, $username, $pass);
+          redirect('admin/index');
 
           } else {
             
@@ -297,7 +312,7 @@ public function recover(){
 //====================================================================================================
   
 public function isAdmin($username){
-  $result = $this->ModelLogin->isType($username, 'admin');
+  $result = $this->ModelLogin->isType($username,'admin');
   return $result;
   /**
   if(isset($result)){
@@ -306,6 +321,16 @@ public function isAdmin($username){
     return false;
 
      */
+}
+
+public function isIzvodjac($username){
+  $result = $this->ModelLogin->isType($username, 'izvodjac');
+  return $result;
+}
+
+public function isVolonter($username){
+  $result = $this->ModelLogin->isType($username, 'volonter');
+  return $result;
 }
 
 
@@ -321,10 +346,47 @@ public function isAdmin($username){
     return false;
   }
   
+  /**
+   * This functions loads the page view
+   * @param $page
+   * @param $data []
+   */
   private function loadView($page, $data){
     $this->load->view('templates/header', $data);
     $this->load->view('templates/navbar', $data);
     $this->load->view('login/'.$page, $data);
     $this->load->view('templates/footer');
   }
+
+  /**
+   * This function sets the userdata into the session
+   * 
+   */
+  private function setUser($user, $email, $username, $password){
+    $this->session->set_userdata('logged_on', 1);
+    $this->session->set_userdata($user, 1);
+    $this->session->set_userdata('email', $email);
+    $this->session->set_userdata('password', $password);
+    $this->session->set_userdata('username', $username);
+  }
+
+  /**
+   * This function checks the user session and redirects to certain dashboard
+   */
+  public function go_to_dashboard(){
+    if ($this->session->userdata('admin') == 1)
+              redirect("Admin/index");
+      else if ($this->session->userdata('korisnik') == 1)
+        redirect("Korisnik");
+      else if ($this->session->userdata('izvodjac') == 1)
+        redirect("Izvodjac");
+      else if ($this->session->userdata('volonter') == 1)
+        redirect("Volonter");
+  }
+
+  public function logout_user(){
+    session_destroy();
+    redirect(base_url());
+  }
+
 } // controller

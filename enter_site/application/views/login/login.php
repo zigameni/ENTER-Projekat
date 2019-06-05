@@ -31,7 +31,7 @@
 
                           
                             <div class="form-group">
-                                <input type="email" name="email" id="register_email"  class="form-control" placeholder="Email Address *" value="<?php echo $email; ?>" required>
+                                <input type="text" name="email" id="register_email"  class="form-control" placeholder="Email Address *" value="<?php echo $email; ?>" required>
                             </div>
                             
                             <div class="form-group">

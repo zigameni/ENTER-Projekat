@@ -36,14 +36,36 @@
 
       <ul class="navbar-nav ml-auto">
         <!--  REGISTER -->
-        <li class="nav-item <?php if($title=='Register')echo 'active';?>">
-          <a class="nav-link" href="<?php echo base_url();?>index.php/login/register">REGISTER</a>
-        </li>
+        <?php
+          
+          if($this->session->userdata('logged_on')=='1'){
+            ?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url();?>index.php/login/go_to_dashboard"><?php echo strtoupper($this->session->userdata('username'));?></a>
+              </li>
+
+              <!--  LOGIN -->
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url();?>index.php/login/logout_user">LOG OUT</a>
+              </li>
+
+            <?php
+          }else {
+            ?>
+              <!-- REGISTER -->
+              <li class="nav-item <?php if($title=='Register')echo 'active';?>">
+                <a class="nav-link" href="<?php echo base_url();?>index.php/login/register">REGISTER</a>
+              </li>
+
+              <!--  LOGIN -->
+              <li class="nav-item <?php if($title=='Login')echo 'active';?>">
+                <a class="nav-link" href="<?php echo base_url();?>index.php/login/login">SIGN IN</a>
+              </li>
+
+            <?php
+          }
+        ?>
         
-         <!--  LOGIN -->
-         <li class="nav-item <?php if($title=='Login')echo 'active';?>">
-          <a class="nav-link" href="<?php echo base_url();?>index.php/login/login">SIGN IN</a>
-        </li>
 
       </ul>
     </div>
