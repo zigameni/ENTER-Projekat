@@ -43,8 +43,15 @@
 
   <div class="bg-dark">
     <div id="sign-up" class="media-middle text-center">
+        <a href="<?php echo base_url();?>index.php/guest/index/about">
         <button type="button" title="About us"class="btn btn-pill btn-dark">About Us</button>  
+        
+        </a>
+
+        <a href="<?php echo base_url();?>index.php/guest/index/contact">
         <button type="button" title="Contact us"class="btn btn-pill btn-dark">Contact us</button> 
+
+        </a>
     </div>
   </div>
 
