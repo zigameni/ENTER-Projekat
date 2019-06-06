@@ -167,12 +167,12 @@ class Login extends CI_Controller {
             if($this->isIzvodjac($result->username)->username == $result->username){
               // User is izvodjac 
              $this->setUser('izvodjac', $result->email, $result->username, $result->password);
-              redirect(base_url());
+              redirect(base_url()."index.php/performer/index");
 
             }else if($this->isVolonter($result->username)->username == $result->username){
               // User is Volonter
               $this->setUser('volonter', $result->email, $result->username, $result->password);
-              redirect(base_url());
+              redirect(base_url()."index.php/volonter/index");
             }else {
               // User is Korisnik
               $this->setUser('korisnik', $result->email, $result->username, $result->password);
