@@ -2,8 +2,8 @@
 <?php 
 
 /**
- * Description of ModelPoruke
- * Klasa koja sluzi kao model za poruke u bazi.
+ *
+ * Klasa koja sluzi kao model za poruke iz Contact stranice za Admina.
  * 
  * @version 1.0
  * @author Gazmend

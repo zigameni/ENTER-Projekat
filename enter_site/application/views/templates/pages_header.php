@@ -1,4 +1,14 @@
-<style type="text/css">
+<?php
+    //@author Gazmend Shehu  sg160664d@student.etf.bg.ac.rs
+?>
+
+
+
+
+<?php 
+  if($title == "Contact"  || $title == "Guide"){
+?>
+  <style type="text/css">
   .jumbotron{
     background-image: url("http://localhost/enter_site/assets/img/pages/bg_img.jpg");
     background-size: cover;
@@ -6,6 +16,36 @@
     min-height: 350px;
   }
 </style>
+
+
+<?php
+  } else if ($title == "Tickets"){
+?>
+<style type="text/css">
+  .jumbotron{
+    background-image: url("http://localhost/enter_site/assets/img/pages/bg_img_Tickets.jpg");
+    background-size: cover;
+    color: white;
+    min-height: 350px;
+  }
+
+  .alert {
+    background-image: url("http://localhost/enter_site/assets/img/pages/bg_img_Tickets.jpg");
+    background-size: cover;
+    color: white;
+    min-height: 150px;
+  }
+</style>
+
+
+
+
+
+
+<?php 
+  }
+?>
+
 <script>
   document.body.style.backgroundColor = "black";
 </script>

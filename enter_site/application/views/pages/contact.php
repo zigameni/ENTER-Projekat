@@ -8,7 +8,7 @@
 
 
 
-<div class="container text-light justify-content-center">
+<div class="container text-light justify-content-center main-container">
 <div class="row">
     <div class="col-offset-auto col-md-6 " id="form_container">
         <h2>Contact Us</h2>
