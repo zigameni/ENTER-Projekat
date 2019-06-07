@@ -58,18 +58,6 @@ class Performer extends CI_Controller {
         $this->load->view("performer/index.php",  array('potvrdjeni1'=>$potvrdjeni1,'naredba1'=>"potvrdjeni1")); 
     }
     
-   /** public function prijaviSe() {
-        $zahtevi1 = $this->ModelDogadjaj->dohvatiZahteve();
-        $naredba1 = "zahtevi1";
-        
-        foreach($zahtevi1 as $element){
-            $element->datum = $this->ModelTermin->dohvatiTDatum($element->terminID);
-            $element->vreme = $this->ModelTermin->dohvatiTVreme($element->terminID);
-        }
-
-        $this->load->view("performer/index.php",  array('zahtevi1'=>$zahtevi1,'naredba1'=>"zahtevi1")); 
-    }
-    */
     
     public function dodajDogg(){
         $this->load->view("performer/dodajEvent.php"); 
