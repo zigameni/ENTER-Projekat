@@ -176,7 +176,7 @@ class Login extends CI_Controller {
             }else {
               // User is Korisnik
               $this->setUser('korisnik', $result->email, $result->username, $result->password);
-              redirect(base_url());
+              redirect(base_url()."index.php/users/index");
             }
 
              // THISSSSSS ISSS WHEREEEE WE LOADDDD THE DASHSSSH BOARDDDD
