@@ -37,6 +37,11 @@ class ModelSlobodniTermini extends CI_Model{
         return $result;
     }
     
+    /** 
+    Vraca sve potvrdjene termine iz baze podataka 
+     * @return result
+     *     
+     */
      public function dohvPotvTermine() {
         $this->db->select('*');
         $this->db->from('dogadjaj');

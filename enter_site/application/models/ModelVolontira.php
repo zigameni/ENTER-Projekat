@@ -21,6 +21,12 @@ class ModelVolontira extends CI_Model{
         $this->load->model("ModelDogadjaj");
     }
     
+    
+    /** 
+    Funkcija koja svakom potvrdjenom dogadjaju dodeljuje odredjen broj volontera 
+     * @return niz
+     *     
+     */
     public function dodeliMesta() {
          $this->db->select('*');
         $this->db->from('termin');
@@ -36,6 +42,10 @@ class ModelVolontira extends CI_Model{
        return $niz;
     }
     
+    /** 
+    Funkcija kojom se volonter prijavljuje za volontiranje i azurura se baza
+     *     
+     */
     public function rezervisi($dogId,$terId,$user) {
          $niz=$this->dodeliMesta();
      
@@ -47,6 +57,10 @@ class ModelVolontira extends CI_Model{
          }
     }
     
+    /** 
+      Funkcija za dohvatanje svih prijavljenih volontera 
+     *     
+     */
     public function dohvatiPrijavljene() {
          $this->db->select('*');
         $this->db->from('volontira');
