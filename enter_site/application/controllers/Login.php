@@ -25,7 +25,7 @@ class Login extends CI_Controller {
     //check for post 
     if($_SERVER['REQUEST_METHOD']=='POST'){
       // Process form
-      echo print_r($_POST);
+     // echo print_r($_POST);
 
       $data['first_name']   = $_POST['firstname'];
       $data['last_name']    = $_POST['lastname'];
