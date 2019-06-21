@@ -3,10 +3,9 @@
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <style>
-<?php
-    include ('style.css');
-?>
+
 </style> 
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,17 +18,17 @@
 <div id="container">
 		<div id="header">
         	<h1>ENTER<span class="off">Volonter</span></h1>
-            <h2>i can't into html</h2>
+            <h2>Control panel</h2>
         </div>   
         
         <div id="menu">
         	<ul>
-            	<li class="menuitem"><a href="#">#</a></li>
-                <li class="menuitem"><a href="#">#</a></li>
-                <li class="menuitem"><a href="#">#</a></li>
-                <li class="menuitem"><a href="#">#</a></li>
-                <li class="menuitem"><a href="#">#</a></li>
-              <li class="menuitem"><a href="#">#</a></li>
+            	<li class="menuitem"><a href="#"></a></li>
+                <li class="menuitem"><a href="#"></a></li>
+                <li class="menuitem"><a href="#"></a></li>
+                <li class="menuitem"><a href="#"></a></li>
+                <li class="menuitem"><a href="#"></a></li>
+              <li class="menuitem"><a href="#"></a></li>
             </ul>
         </div>
         
