@@ -22,7 +22,7 @@ foreach ($karte as $karta) {
                     </td>
                     <td > 
                         <h1 style="color:black"> <b><?php echo $karta->cena; ?> RSD</b> </h1>   
-                        <button type="button" class="btn btn-danger">Buy Ticket</button>
+                        <button type="button" class="btn btn-danger" name="<?php echo $karta->naziv; ?>">   <a class="nav-link" href="<?php echo base_url();?>index.php/users/prikazKarata">Buy Ticket</a></button>
                     </td>
                 </tr>
             </table>    

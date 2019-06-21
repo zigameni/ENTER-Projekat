@@ -377,11 +377,11 @@ public function isVolonter($username){
     if ($this->session->userdata('admin') == 1)
               redirect("Admin/index");
       else if ($this->session->userdata('korisnik') == 1)
-        redirect("Korisnik");
+        redirect("users/index");
       else if ($this->session->userdata('izvodjac') == 1)
-        redirect("Izvodjac");
+        redirect("Izvodjac/index");
       else if ($this->session->userdata('volonter') == 1)
-        redirect("Volonter");
+        redirect("Volonter/index");
   }
 
   public function logout_user(){

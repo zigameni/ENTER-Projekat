@@ -18,7 +18,11 @@
 <body>
 <div id="container">
 		<div id="header">
-        	<h1>ENTER<span class="off">User</span></h1>
+        	
+                
+                
+                
+                 <a href="<?php echo base_url();?>"><h1>ENTER<span class="off">User</span></h1></a>
             <h2>i can't into html</h2>
         </div>   
         

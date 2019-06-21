@@ -25,8 +25,8 @@ public function __construct() {
         $this->load->model("ModelKarta");
     }
     
-    public function index() {
-         $naredba1="pocetna";
+    public function index($naredba1="pocetna") {
+         
         $this->load->view("users/index.php", $naredba1);   
     }
 
