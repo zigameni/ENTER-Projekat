@@ -16,7 +16,7 @@
 <div id="container">
 		<div id="header">
         	<h1>ENTER<span class="off">Performer</span></h1>
-            <h2>i can't into html</h2>
+            <h2>Control Panel</h2>
         </div>   
         
         <div id="menu">
