@@ -9,21 +9,21 @@
       <!-- Slide One - Set the background image for this slide in the line below -->
       <div class="carousel-item active" style="background-image: url('<?php echo base_url();?>assets/img/c_item1.jpg')">
         <div class="carousel-caption d-none d-md-block">
-        <h1 class="display-4"><span style="background-color: red" align="center"> <b>ENTER</b> </h1>
+          <h2 class="display-4">ENTER</h2>
           <p class="lead">Welcome to the Partyyy!</p>
         </div>
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
       <div class="carousel-item" style="background-image: url('<?php echo base_url();?>assets/img/c_item2.jpg')">
         <div class="carousel-caption d-none d-md-block">
-        <h1 class="display-4"><span style="background-color: red" align="center"> <b>ENTER</b> </h1>
+          <h2 class="display-4">ENTER</h2>
           <p class="lead">Welcome to the Partyyy!</p>
         </div>
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
       <div class="carousel-item" style="background-image: url('<?php echo base_url();?>assets/img/c_item3.jpeg')">
         <div class="carousel-caption d-none d-md-block">
-        <h1 class="display-4"><span style="background-color: red" align="center"> <b>ENTER</b> </h1>
+          <h2 class="display-4">ENTER</h2>
           <p class="lead">Welcome to the Partyyy!</p>
         </div>
       </div>
@@ -39,7 +39,21 @@
   </div>
 
 
+<!-- Page Content -->
 
+  <div class="bg-dark">
+    <div id="sign-up" class="media-middle text-center">
+        <a href="<?php echo base_url();?>index.php/guest/index/about">
+        <button type="button" title="About us"class="btn btn-pill btn-dark">About Us</button>  
+        
+        </a>
+
+        <a href="<?php echo base_url();?>index.php/guest/index/contact">
+        <button type="button" title="Contact us"class="btn btn-pill btn-dark">Contact us</button> 
+
+        </a>
+    </div>
+  </div>
 
 
 

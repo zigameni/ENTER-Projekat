@@ -3,9 +3,10 @@
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <style>
-
+<?php
+    include ('style.css');
+?>
 </style> 
-<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -18,17 +19,17 @@
 <div id="container">
 		<div id="header">
         	<h1>ENTER<span class="off">Volonter</span></h1>
-            <h2>Control panel</h2>
+            <h2>i can't into html</h2>
         </div>   
         
         <div id="menu">
         	<ul>
-            	<li class="menuitem"><a href="#"></a></li>
-                <li class="menuitem"><a href="#"></a></li>
-                <li class="menuitem"><a href="#"></a></li>
-                <li class="menuitem"><a href="#"></a></li>
-                <li class="menuitem"><a href="#"></a></li>
-              <li class="menuitem"><a href="#"></a></li>
+            	<li class="menuitem"><a href="#">#</a></li>
+                <li class="menuitem"><a href="#">#</a></li>
+                <li class="menuitem"><a href="#">#</a></li>
+                <li class="menuitem"><a href="#">#</a></li>
+                <li class="menuitem"><a href="#">#</a></li>
+              <li class="menuitem"><a href="#">#</a></li>
             </ul>
         </div>
         
@@ -43,7 +44,7 @@
                 <ul>
                     <li><a href="<?php echo site_url("Volonter/slobodniTermini"); ?>">Slobodni termini</a></li>
                     <li><a href="<?php echo site_url("Volonter/odobreniZahtevi"); ?>">Odobreni zahtevi</a></li>
-                    <li><a href="#">#</a></li>
+                    <li><a href="<?php echo site_url("Volonter/dodajVol"); ?>">Prijavi se</a></li>
                     <li><a href="#">#</a></li>
                     <li><a href="#">#</a></li>
                     <li><a href="#">#</a></li>
@@ -67,26 +68,26 @@
         <div id="content_main">
         	 <?php
                     error_reporting(0);
-                    /**if($naredba1 === NULL) $naredba1 = "pocetna";
+                    if($naredba1 === NULL) $naredba1 = "pocetna";
                     if($naredba1 == "pocetna"){
                         echo "Hola Mr. Volunteer!";
                     }
                     
-                    elseif($naredba1 == "termini1"){
-                        echo "<table> <tr><th>Datum termina:</th><th>Vreme:</th><th>Rezervisan:</th><th>TerminId:</th></tr>";
+                    elseif($naredba1 == "mesta"){
+                        echo "<table> <tr><th>Naziv:</th><th>Opis:</th><th>DogadjajId:</th><th>TerminId:</th></tr>";
                     
-                        foreach ($termini1 as $termin) {
-                            echo "<tr><td>".$termin->datum."</td><td>".$termin->vreme."</td><td> ".$termin->rezervisan."</td><td> ".$termin->terminID."</td></tr>";
+                        foreach ($mesta as $termin) {
+                            echo "<tr><td>".$termin->naziv."</td><td>".$termin->opis."</td><td> ".$termin->dogadjajID."</td><td> ".$termin->terminID."</td></tr>";
                             
                         }
                         echo "</table><br><br>";
            
                     }
                     elseif($naredba1 == "potvrdjeni1"){
-                        echo "<table> <tr><th>Naziv dogadjaja:</th><th>Izvodjac:</th><th>Opis:</th><th>Datum:</th><th>Vreme:</th></tr>";
+                        echo "<table> <tr><th>Username:</th><th>DogadjajID:</th></tr>";
                     
                         foreach ($potvrdjeni1 as $potvrdjen) {
-                            echo "<tr><td>".$potvrdjen->naziv."</td><td>".$potvrdjen->username."</td><td> ".$potvrdjen->opis."</td><td> ". $potvrdjen->datum ."</td> <td> ". $potvrdjen->vreme ."</td> "
+                            echo "<tr><td>".$potvrdjen->username."</td><td>".$potvrdjen->dogadjajID."</td> "
                                     . "<td> &nbsp;&nbsp;&nbsp;&nbsp; </td> </tr>";
                             
                         }
@@ -105,7 +106,7 @@
                         echo "</table><br><br>";
     //                    echo "<a href=\" ". site_url("Admin/dodajTer"). "\">Dodaj novi termin</a>";
                     }
-                    */
+                    
                 ?>
         </div>
         <div id="content_bottom"></div>

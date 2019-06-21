@@ -1,62 +1,54 @@
 <?php
-// @author Vladimir Stefanovic sv140044d@etf.rs
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Controller for all User functionalities
- *
- */
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Users extends CI_Controller {
 
-public function __construct() {
-        parent::__construct();
-        $this->load->library("session");
-        
-        
-        $this->load->model("ModelUser");
-        $this->load->model("ModelTermin");
-        $this->load->model("ModelKarta");
-    }
-    
-    public function index($naredba1="pocetna") {
+
+  public function register(){
+
+    //check for post 
+    if($_SERVER['REQUEST_METHOD']=='POST'){
+      // Process form
+    } else {
+      // LOAD FORM
+      $data =[
+        'name' => '',
          
-        $this->load->view("users/index.php", $naredba1);   
+      ];
+      $page = "register";
+      $data['title'] = ucfirst($page);
+      
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/navbar', $data);
+      $this->load->view('users/'.$page, $data);
+      $this->load->view('templates/footer');
+      echo 'load form';
     }
 
-     public function logout(){
-        
-        $this->session->unset_userdata("user");
-        $this->session->sess_destroy();
-        redirect("Guest/index");
-    }
-    
-    //Kontroler koji prikazuje informacije dogadjaja
-    public function prikazDogadjaja(){
-        $dogadjaji1 = $this->ModelUser->dohvDogadjaje();
-        $naredba1 = "dogadjaji1";
+  }
 
-        $this->load->view("users/index.php",  array('dogadjaji1'=>$dogadjaji1,'naredba1'=>$naredba1)); 
-    }
-    
-    //Kontroler koji prikazuje informacije o kartama
-    public function prikazKarata(){
-        $karte1 = $this->ModelKarta->dohvatiKarte();
-        $naredba1 = "karte1";
+/**
+ 
+  Loading the home page
+	public function index($page = 'register')
+	{
 
-        $this->load->view("users/index.php",  array('karte1'=>$karte1,'naredba1'=>$naredba1)); 
-    }
-    
-    public function kupovinaKarte(){
-        $kupovina1 = $this->ModelUser->kupiKartu();
-        $naredba1 = "kupovina1";
 
-        $this->load->view("users/index.php",  array('kupovina1'=>$kupovina1,'naredba1'=>$naredba1)); 
+    //If page does not exist
+    if(!file_exists(APPPATH.'views/users/'.$page.'.php')){
+      show_404();
     }
+
+    $data['title'] = ucfirst($page);
+   
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/navbar', $data);
+    $this->load->view('users/'.$page, $data);
+    $this->load->view('templates/footer');
+  }
+ 
+ */
+
+  
+  
 }

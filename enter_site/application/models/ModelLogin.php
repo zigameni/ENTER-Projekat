@@ -1,12 +1,5 @@
 <?php
 
-/**
- *
- * Klasa koja sluzi kao model za Login i Register za kontakt sa bazom
- * 
- * @version 1.0
- * @author Gazmend
- */
 class ModelLogin extends CI_Model{
   /**
    * Constructs model

@@ -13,8 +13,6 @@
 	
 	</head>
 	<body>
-
-	<div class="main-container">
 		
 		
 		

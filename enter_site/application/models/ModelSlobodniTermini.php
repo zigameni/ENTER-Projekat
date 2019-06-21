@@ -36,12 +36,20 @@ class ModelSlobodniTermini extends CI_Model{
         $result = $query->result();
         return $result;
     }
-  
     
-   /** public function proveraZahtev() {
+    /** 
+    Vraca sve potvrdjene termine iz baze podataka 
+     * @return result
+     *     
+     */
+     public function dohvPotvTermine() {
         $this->db->select('*');
         $this->db->from('dogadjaj');
+        $this->db->where('potvrdjen',1);
+        $query=$this->db->get();
+        $result = $query->result();
+        return $result;
     }
-   */
+  
     
 }

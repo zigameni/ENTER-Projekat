@@ -13,7 +13,10 @@
  */
 class Performer extends CI_Controller {
     
-    
+    /** 
+    Konstruktor  za klasu izvodjac, ucitava potrebne parametre
+     *     
+     */
     public function __construct() {
         parent::__construct();
         $this->load->library("session");
@@ -25,10 +28,21 @@ class Performer extends CI_Controller {
         $this->load->model("ModelSlobodniTermini");
     }
     
+    /** 
+    Funkcija za ucitavanje pocetne strane i sadrzaja na njoj
+     *     
+     */
+    
     public function index() {
          $naredba1="pocetna";
         $this->load->view("performer/index.php", $naredba1);   
     }
+    
+    
+    /** 
+    Funkcija za odjavljivanje korisnika
+     *     
+     */
 
      public function logout(){
         
@@ -38,6 +52,10 @@ class Performer extends CI_Controller {
     }
     
     
+    /** 
+    Funkcija koja dohvata slobodne termine iz baze i prosledjuje ih
+     *     
+     */
     public function slobodniTermini(){
         $termini1 = $this->ModelSlobodniTermini->dohvSlobodneTermine();
         $naredba1 = "termini1";
@@ -45,7 +63,10 @@ class Performer extends CI_Controller {
         $this->load->view("performer/index.php",  array('termini1'=>$termini1,'naredba1'=>"termini1")); 
     }
     
-
+    /** 
+    Funkcija koja dohvata i prosledjuje odobrene zahteve
+     *     
+     */
     public function odobreniZahtevi() {
         $potvrdjeni1 = $this->ModelDogadjaj->dohvatiPotvrdjene();
         $naredba1 = "potvrdjeni1";
@@ -58,22 +79,19 @@ class Performer extends CI_Controller {
         $this->load->view("performer/index.php",  array('potvrdjeni1'=>$potvrdjeni1,'naredba1'=>"potvrdjeni1")); 
     }
     
-   /** public function prijaviSe() {
-        $zahtevi1 = $this->ModelDogadjaj->dohvatiZahteve();
-        $naredba1 = "zahtevi1";
-        
-        foreach($zahtevi1 as $element){
-            $element->datum = $this->ModelTermin->dohvatiTDatum($element->terminID);
-            $element->vreme = $this->ModelTermin->dohvatiTVreme($element->terminID);
-        }
-
-        $this->load->view("performer/index.php",  array('zahtevi1'=>$zahtevi1,'naredba1'=>"zahtevi1")); 
-    }
-    */
-    
+    /** 
+    Funkcija koja zove formu za dodavanje dogadjaja - pomocna
+     *     
+     */
     public function dodajDogg(){
         $this->load->view("performer/dodajEvent.php"); 
     }
+    
+    
+    /** 
+    Funkcija koja dodaje novi dogadjaj
+     *     
+     */
     
     public function dodajDog(){
         $this->form_validation->set_rules('naziv','Naziv', 'required');
