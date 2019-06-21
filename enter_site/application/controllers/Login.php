@@ -176,7 +176,7 @@ class Login extends CI_Controller {
             }else {
               // User is Korisnik
               $this->setUser('korisnik', $result->email, $result->username, $result->password);
-              redirect(base_url());
+              redirect(base_url()."index.php/users/index");
             }
 
              // THISSSSSS ISSS WHEREEEE WE LOADDDD THE DASHSSSH BOARDDDD
@@ -377,11 +377,11 @@ public function isVolonter($username){
     if ($this->session->userdata('admin') == 1)
               redirect("Admin/index");
       else if ($this->session->userdata('korisnik') == 1)
-        redirect("Korisnik");
+        redirect("users/index");
       else if ($this->session->userdata('izvodjac') == 1)
-        redirect("Izvodjac");
+        redirect("Izvodjac/index");
       else if ($this->session->userdata('volonter') == 1)
-        redirect("Volonter");
+        redirect("Volonter/index");
   }
 
   public function logout_user(){
