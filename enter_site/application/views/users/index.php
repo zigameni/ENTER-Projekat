@@ -1,12 +1,11 @@
 <?php
     // @author Vladimir Stefanovic (vs140044d@etf.bg.rs)
 ?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<style>
-<?php
-    include ('style.css');
-?>
-</style> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -22,7 +21,7 @@
                 
                 
                 
-                 <a href="<?php echo base_url();?>"><h1>ENTER<span class="off">User</span></h1></a>
+                 <a href="<?php echo base_url();?>"><h1>ENTER<span class="off"><?php echo strtoupper($this->session->userdata('username'));?></span></h1></a>
             <h2>i can't into html</h2>
         </div>   
         
@@ -48,7 +47,7 @@
                 <ul>
                     <li><a href="<?php echo site_url("Users/prikazDogadjaja"); ?>">Prikaz dogadjaja</a></li>
                     <li><a href="<?php echo site_url("Users/prikazKarata"); ?>">Prikaz karti</a></li>
-                    <li><a href="<?php echo site_url("Users/kupovinaKarte"); ?>">Kupovina karte</a></li>
+                    <li><a href="<?php echo site_url("guest/index/tickets"); ?>">Kupovina karte</a></li>
                     <li><a href="<?php echo site_url("Users/logout"); ?>">Logout</a></li>
                 </ul>
 </div>
@@ -83,7 +82,7 @@
            
                     }
                     elseif($naredba1 == "karte1"){
-                        echo "<table> <tr><th>Naziv:</th><th>Opis:</th><th>Cena:</th><th>Ukupno:</th></tr>";
+                        echo "<table> <tr><th>Naziv:</th><th>Opis:</th><th>Cena:</th><th>Preostalo:</th></tr>";
                     
                         foreach ($karte1 as $karta) {
                             echo "<tr><td>".$karta->naziv."</td><td>".$karta->opis."</td><td> ".$karta->cena."</td><td> ". $karta->kolicina."</td>"
@@ -93,9 +92,9 @@
                         echo "</table><br><br>";
   
                     }
-                    elseif($naredba1 == "kupovina1"){
-                        echo "Missing";
-                    }
+//                    elseif($naredba1 == "kupovina1"){
+//                        echo "Missing";
+//                    }
                     
                 ?>
         </div>
