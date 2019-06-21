@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+
 // @author Gazmend Shehu  sg160664d@student.etf.bg.ac.rs
 /**
  * Guest - controller for Guest functionalities
@@ -10,11 +12,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Guest extends CI_Controller {
 
   public function __construct() {
-    parent::__construct();
-      
+    parent::__construct();  
   }
   
-  //Loading the home page
+  /**
+   * This is the main funcion, it will load the pages.
+   * @param $page
+   */
 	public function index($page = 'home')
 	{
 		//GLOBAL VARIABLES TO SHOW ERRORS
@@ -51,7 +55,21 @@ class Guest extends CI_Controller {
       // --------------------------------------------
 
      
-    } else if ($page  == "guide"){
+    } else if ( $page  == "lineup"){
+      //this model is used to grab the performers
+      $this->load->model('ModelIzvodjac');
+      $izvodjaci = $this->ModelIzvodjac->dohvatiIzvodjace();
+
+      // --------------------------------------------
+      $data['title'] = ucfirst($page);
+     
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/navbar', $data);
+      $this->load->view('templates/pages_header', $data);
+      $this->load->view("pages/$page",  array('izvodjaci'=>$izvodjaci, 'title'=>$data['title']));  
+      $this->load->view('templates/footer');
+      // --------------------------------------------
+    }else if ($page  == "guide"){
       $this->guide();
     } else {
 
@@ -121,6 +139,10 @@ class Guest extends CI_Controller {
   }//end_poruka
 
 
+  /**
+   * Helper function to load the sub sections of the guide page. 
+   * @param $subPage
+   */
   public function guide($subPage = "policy"){
 
     $data['subPage'] = $subPage;
@@ -134,6 +156,38 @@ class Guest extends CI_Controller {
     $this->load->view('templates/footer');
   }
 
+  /**
+   * Funkcija omogucava kupljenje karte. 
+   * @param $ticketID - koju kartu zeli da kupi
+   */
+  public function buyTicket($ticketID){
+    // da li je user signed in?
+    if($this->session->userdata('logged_on')=='1' ){
+      //buy ticket
+      $this->load->model('ModelBuyTicket');
+
+      $kolicina = $this->ModelBuyTicket->getKolicina($ticketID);
+      if($kolicina > 0){
+        //Dodaj kartu na kupljene karte. 
+        $username = $this->session->userdata('username');
+        $date = date('y-m-d');
+        $this->ModelBuyTicket->dodajKartu($ticketID, $username, $date);
+
+        //smanji kolicinu karata.
+        $this->ModelBuyTicket->smanjiKolicinu($ticketID, $kolicina);
+
+      }
+
+      redirect('guest/index/tickets');
+
+    }else {
+      echo "this shit dont work";
+      redirect('login/login');
+    }
+    // ako jeste onda moze da kupi kartu
+
+    // ako nije onda samo ga prosledi na sign in. 
+  }
 
 
 

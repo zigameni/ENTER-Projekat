@@ -1,8 +1,8 @@
 	
     <!-- Page Content -->
-<br>
-<br>
-<br>
+
+
+<?php // if($page == "contact")echo '<br><br><br><br>';  ?>
 <footer id="footer">
 <div class="bg-dark">
     <div id="sign-up" class="media-middle text-center">
@@ -17,8 +17,10 @@
         </a>
     </div>
   </div>
+  <span class="copyright"><p>Copyright © 2019 | Enter.com - ENTER the festival.</p>				</p></span>
 
 </footer>
+
 </div><!-- Main- Container -->
     
 	 <!-- Optional JavaScript -->

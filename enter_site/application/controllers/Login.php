@@ -176,6 +176,8 @@ class Login extends CI_Controller {
             }else {
               // User is Korisnik
               $this->setUser('korisnik', $result->email, $result->username, $result->password);
+              $this->session->set_userdata('canBuy', 1);
+
               redirect(base_url()."index.php/users/index");
             }
 
@@ -363,11 +365,14 @@ public function isVolonter($username){
    * 
    */
   private function setUser($user, $email, $username, $password){
+    
     $this->session->set_userdata('logged_on', 1);
     $this->session->set_userdata($user, 1);
     $this->session->set_userdata('email', $email);
     $this->session->set_userdata('password', $password);
     $this->session->set_userdata('username', $username);
+
+
   }
 
   /**

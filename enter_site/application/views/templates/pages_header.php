@@ -19,7 +19,7 @@
 
 
 <?php
-  } else if ($title == "Tickets"){
+  } else if ($title == "Tickets" || $title == "Lineup" ){
 ?>
 <style type="text/css">
   .jumbotron{

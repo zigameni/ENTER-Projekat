@@ -1,11 +1,12 @@
+<!-- @author: Gazmend Shehu -->
+
 <div class="container">
-
-
-
 
 
 <?php 
 // -----------------------------------------------------------------------------------------------
+
+// Kad kliknemo na BUY mora da se dodaje karta na tab karta. 
 foreach ($karte as $karta) {
 ?>
     <div class="row">
@@ -22,14 +23,17 @@ foreach ($karte as $karta) {
                     </td>
                     <td > 
                         <h1 style="color:black"> <b><?php echo $karta->cena; ?> RSD</b> </h1>   
-                        <button type="button" class="btn btn-danger" name="<?php echo $karta->naziv; ?>">   <a class="nav-link" href="<?php echo base_url();?>index.php/users/prikazKarata">Buy Ticket</a></button>
+                        <button type="button" class="btn btn-danger" name="<?php echo $karta->naziv; ?>"> 
+                            <a class="nav-link" style="color: black" href="<?php echo base_url();//index.php/users/prikazKarata?>index.php/guest/buyTicket/<?php echo $karta->kartaID;?>">
+                                Buy Ticket 
+                            </a>
+                        </button>
                     </td>
                 </tr>
             </table>    
         </div>
     </div>
-</div>
-
+    </div>
 
 
 

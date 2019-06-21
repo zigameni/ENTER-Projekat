@@ -1,8 +1,9 @@
+<!-- @author: Gazmend Shehu -->
 
 
-<div class="container">
+
+<div class="main-container">
     
-</div>
 
 
 
@@ -25,7 +26,7 @@
             <?php
             }
             ?>            
-         
+        
         <form role="form" method="post" id="reused_form" action="poruka">
         
             <div class="row">
@@ -62,7 +63,10 @@
             </div>
             
         </form>
-        </div>
+        
     </div>
 </div>
+</div>
+
+
 </div>

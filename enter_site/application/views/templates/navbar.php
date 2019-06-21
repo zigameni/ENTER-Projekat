@@ -26,11 +26,7 @@
           <a class="nav-link" href="<?php echo base_url();?>index.php/guest/index/guide">GUIDE</a>
         </li>
 
-        <!--  NEWS -->
-        <li class="nav-item <?php if($title=='News')echo 'active';?>">
-          <a class="nav-link" href="<?php echo base_url();?>index.php/guest/index/news">NEWS</a>
-        </li>
-
+      
       </ul>
       
 
