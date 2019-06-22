@@ -27,12 +27,8 @@
         
         <div id="menu">
         	<ul>
-            	<li class="menuitem"><a href="#">#</a></li>
-                <li class="menuitem"><a href="#">#</a></li>
-                <li class="menuitem"><a href="#">#</a></li>
-                <li class="menuitem"><a href="#">#</a></li>
-                <li class="menuitem"><a href="#">#</a></li>
-              <li class="menuitem"><a href="#">#</a></li>
+            	<li class="menuitem"><a href="#"></a></li>
+                
             </ul>
         </div>
         
@@ -40,7 +36,8 @@
 
         <div id="leftmenu_top"></div>
 
-				<div id="leftmenu_main">    
+<!--        Glavni meni za dashboard-->
+	<div id="leftmenu_main">    
                 
                 <h3>Links</h3>
                         
@@ -50,7 +47,7 @@
                     <li><a href="<?php echo site_url("guest/index/tickets"); ?>">Kupovina karte</a></li>
                     <li><a href="<?php echo site_url("Users/logout"); ?>">Logout</a></li>
                 </ul>
-</div>
+        </div>
                 
                 
               <div id="leftmenu_bottom"></div>
@@ -68,7 +65,7 @@
                     error_reporting(0);
                     if($naredba1 === NULL) $naredba1 = "pocetna";
                     if($naredba1 == "pocetna"){
-                        echo "Hola User!";
+                        echo "<h1><font color='white'>Hola User!</font></h1>";
                     }
                     
                     elseif($naredba1 == "dogadjaji1"){

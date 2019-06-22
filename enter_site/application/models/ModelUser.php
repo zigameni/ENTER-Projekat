@@ -24,7 +24,7 @@ class ModelUser extends CI_Model{
     }
     
     
-    //Dohvata vazne informacije vezane za dogadjaj
+    //Dohvata vazne informacije vezane za dogadjaje
     public function dohvDogadjaje() {
         $this->db->select('*');
         $this->db->from('dogadjaj');
@@ -44,25 +44,5 @@ class ModelUser extends CI_Model{
         }
         
         return $result;
-    }
-    
-  /*  private function dohvVremeTermina($termin){
-        $this->db->select('*');
-        $this->db->from('termin');
-        $this->db->where('terminID',$termin);
-        $query=$this->db->get();
-        $rez = $query->result();
-        
-        
-        return ;
-    }*/
-    
-    public function dohvKarte(){
-         return "Missing";
-         }
-    
-    
-    public function kupiKartu(){
-        return "Missing";
     }
 }
