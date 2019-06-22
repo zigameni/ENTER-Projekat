@@ -22,7 +22,7 @@
                 
                 
                  <a href="<?php echo base_url();?>"><h1>ENTER<span class="off"><?php echo strtoupper($this->session->userdata('username'));?></span></h1></a>
-            <h2>i can't into html</h2>
+            <h2>Control Panel</h2>
         </div>   
         
         <div id="menu">
@@ -82,12 +82,18 @@
            
                     }
                     elseif($naredba1 == "karte1"){
-                        echo "<table> <tr><th>Naziv:</th><th>Opis:</th><th>Cena:</th><th>Preostalo:</th></tr>";
-                    
+                        echo "<table> <tr><th>Naziv:</th><th>Opis:</th><th>Cena:</th><th>Preostalo:</th><th>Kupljena:</th></tr>";
+                        
+                        $jesteKupljena = 0;
                         foreach ($karte1 as $karta) {
-                            echo "<tr><td>".$karta->naziv."</td><td>".$karta->opis."</td><td> ".$karta->cena."</td><td> ". $karta->kolicina."</td>"
-                                    . "<td> &nbsp;&nbsp;&nbsp;&nbsp; </td> </tr>";
-      
+                            echo "<tr><td>".$karta->naziv."</td><td>".$karta->opis."</td><td> ".$karta->cena."</td><td> ". $karta->kolicina."</td>";
+                            foreach($kupljene as $kupljena){
+                                if ($kupljena == $karta->kartaID) {echo "<td><p>X</p></td>"; $jesteKupljena = 1;};
+                            };
+                            if (!$jesteKupljena) {echo "<td>&nbsp</td>";}
+                            $jesteKupljena = 0;
+                            echo "</tr>";
+     
                         }
                         echo "</table><br><br>";
   

@@ -50,13 +50,24 @@ public function __construct() {
         $karte1 = $this->ModelKarta->dohvatiKarte();
         $naredba1 = "karte1";
 
-        $this->load->view("users/index.php",  array('karte1'=>$karte1,'naredba1'=>$naredba1)); 
+        $kupljena = array();
+        foreach ($karte1 as $karta){
+            $svi_kupci_ove_karte = $this->ModelKarta->dohvatiKupljeneKarte($karta->kartaID);
+            foreach ($svi_kupci_ove_karte as $kupac){
+                if ($kupac->username == $this->session->userdata('username')) {array_push($kupljena, $karta->kartaID);};
+            }
+    }
+        
+        
+        $this->load->view("users/index.php",  array('karte1'=>$karte1,'naredba1'=>$naredba1,'kupljene'=>$kupljena)); 
     }
     
-    public function kupovinaKarte(){
-        $kupovina1 = $this->ModelUser->kupiKartu();
-        $naredba1 = "kupovina1";
-
-        $this->load->view("users/index.php",  array('kupovina1'=>$kupovina1,'naredba1'=>$naredba1)); 
-    }
+//    public function kupovinaKarte(){
+//        $kupovina1 = $this->ModelUser->kupiKartu();
+//        $naredba1 = "kupovina1";
+//        
+//        $ = $this->ModelUser->kupiKartu()
+//
+//        $this->load->view("users/index.php",  array('kupovina1'=>$kupovina1,'naredba1'=>$naredba1)); 
+//    }
 }
