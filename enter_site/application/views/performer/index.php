@@ -15,7 +15,7 @@
 <body>
 <div id="container">
 		<div id="header">
-        	<h1>ENTER<span class="off">Performer</span></h1>
+        	 <a href="<?php echo base_url();?>"><h1>ENTER |<span class="off"><?php echo strtoupper($this->session->userdata('username'));?></span></h1></a>
             <h2>Control Panel</h2>
         </div>   
         
