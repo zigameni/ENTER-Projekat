@@ -384,7 +384,7 @@ public function isVolonter($username){
       else if ($this->session->userdata('korisnik') == 1)
         redirect("users/index");
       else if ($this->session->userdata('izvodjac') == 1)
-        redirect("Izvodjac/index");
+        redirect("Performer/index");
       else if ($this->session->userdata('volonter') == 1)
         redirect("Volonter/index");
   }
