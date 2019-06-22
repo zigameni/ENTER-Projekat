@@ -84,14 +84,15 @@
                     elseif($naredba1 == "karte1"){
                         echo "<table> <tr><th>Naziv:</th><th>Opis:</th><th>Cena:</th><th>Preostalo:</th><th>Kupljena:</th></tr>";
                         
-                        $jesteKupljena = 0;
+                        
                         foreach ($karte1 as $karta) {
+                            $brojKupljenih = 0;
                             echo "<tr><td>".$karta->naziv."</td><td>".$karta->opis."</td><td> ".$karta->cena."</td><td> ". $karta->kolicina."</td>";
                             foreach($kupljene as $kupljena){
-                                if ($kupljena == $karta->kartaID) {echo "<td><p>X</p></td>"; $jesteKupljena = 1;};
+                                if ($kupljena == $karta->kartaID) { $brojKupljenih++;};
                             };
-                            if (!$jesteKupljena) {echo "<td>&nbsp</td>";}
-                            $jesteKupljena = 0;
+                            echo "<td>$brojKupljenih</td>";
+                            $brojKupljenih = 0;
                             echo "</tr>";
      
                         }
