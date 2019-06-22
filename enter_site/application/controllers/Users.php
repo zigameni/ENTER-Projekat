@@ -25,11 +25,13 @@ public function __construct() {
         $this->load->model("ModelKarta");
     }
     
+    //Pocetna stranica dashboard-a za logovane korisnike
     public function index($naredba1="pocetna") {
          
         $this->load->view("users/index.php", $naredba1);   
     }
 
+    //Unistavanje sesije, standardan logout
      public function logout(){
         
         $this->session->unset_userdata("user");
@@ -46,6 +48,7 @@ public function __construct() {
     }
     
     //Kontroler koji prikazuje informacije o kartama
+    //Formira se dinamicki niz koji prikazuje broj i vrstu kupljenih karata po principu punjenja steka
     public function prikazKarata(){
         $karte1 = $this->ModelKarta->dohvatiKarte();
         $naredba1 = "karte1";
@@ -61,13 +64,4 @@ public function __construct() {
         
         $this->load->view("users/index.php",  array('karte1'=>$karte1,'naredba1'=>$naredba1,'kupljene'=>$kupljena)); 
     }
-    
-//    public function kupovinaKarte(){
-//        $kupovina1 = $this->ModelUser->kupiKartu();
-//        $naredba1 = "kupovina1";
-//        
-//        $ = $this->ModelUser->kupiKartu()
-//
-//        $this->load->view("users/index.php",  array('kupovina1'=>$kupovina1,'naredba1'=>$naredba1)); 
-//    }
 }
