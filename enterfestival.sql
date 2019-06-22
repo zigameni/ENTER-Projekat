@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 03, 2019 at 12:00 PM
--- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- Generation Time: Jun 22, 2019 at 07:45 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -56,19 +56,19 @@ CREATE TABLE IF NOT EXISTS `admin_poruke` (
   `posiljalac` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`porukaID`),
   KEY `posiljalac` (`posiljalac`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `admin_poruke`
 --
 
 INSERT INTO `admin_poruke` (`porukaID`, `naslov`, `sadrzaj`, `posiljalac`) VALUES
-(6, 'hey admin', 'tell me a story', 'Bad Copy'),
 (8, 'yo wassup', 'my man', 'RJD2'),
 (10, 'got a minute?', 'need assistance', 'Com Truise'),
 (11, 'got more sole', 'than a sock with a hole', 'MF DOOM'),
 (12, 'yeeee', 'haaaaw', 'RJD2'),
-(13, 'asdf', 'fdsa', 'Sajsi MC');
+(13, 'asdf', 'fdsa', 'Sajsi MC'),
+(14, 'sfdf', 'you dumb', 'Bad Copy');
 
 -- --------------------------------------------------------
 
@@ -183,6 +183,14 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `korisnik`
+--
+
+INSERT INTO `korisnik` (`username`) VALUES
+('korisnik_1'),
+('korisnik_2');
+
 -- --------------------------------------------------------
 
 --
@@ -191,12 +199,13 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
 
 DROP TABLE IF EXISTS `kupljena_karta`;
 CREATE TABLE IF NOT EXISTS `kupljena_karta` (
-  `kartaID` int(14) NOT NULL,
+  `ID` int(7) NOT NULL AUTO_INCREMENT,
+  `kartaID` int(7) NOT NULL,
   `username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `datum` date NOT NULL,
-  PRIMARY KEY (`kartaID`,`username`),
+  PRIMARY KEY (`ID`),
   KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -226,9 +235,13 @@ INSERT INTO `opsti_korisnik` (`username`, `password`, `ime`, `prezime`, `adresa`
 ('Bad Copy', '123', 'Vladan', 'Aksentijevic', 'Kotez', 'Beograd', 'Srbija', '43kotez@gmail.com'),
 ('Boards of Canada', '123', 'Boban', 'Nabob', 'Vojvode Stepe', 'Ontario', 'Kanada', 'boc@gmail.com'),
 ('Com Truise', '123', 'Bobi', 'Gromada', 'Ulica', 'Worcestershire', 'Great Britain', 'comtruise@gmail.com'),
+('korisnik_1', '123', 'Korisnik1', 'Korisnik1', '1001', 'Beograd', 'Serbija', 'korisnik_1@gmail.com'),
+('korisnik_2', '123', 'Korisnik2', 'Korisnik2', '10002', 'Beograd', 'Serbija', 'korisnik_2@gmail.com'),
 ('MF DOOM', '123', 'Stephen', 'Dumile', '1300 kaplara', 'New York', 'USA', 'allcaps@gmail.com'),
 ('RJD2', '123', 'Adam', 'Savage', 'omladinskih brigada', 'Boston', 'USA', 'rjd2@gmail.com'),
-('Sajsi MC', '123', 'Ivana', 'Rasic', 'Blokovi', 'Beograd', 'Srbija', 'sighcee@gmail.com');
+('Sajsi MC', '123', 'Ivana', 'Rasic', 'Blokovi', 'Beograd', 'Srbija', 'sighcee@gmail.com'),
+('volonter_1', '123', 'Volonter1', 'Volonter1', '11000', 'Beograd', 'Serbija', 'volonter_1@gmail.com'),
+('volonter_2', '123', 'Volonter2', 'Volonter2', '11000', 'Beograd', 'Serbija', 'volonter_2@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -246,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `poruke` (
   PRIMARY KEY (`porukaID`),
   KEY `primalac` (`primalac`),
   KEY `posiljalac` (`posiljalac`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `poruke`
@@ -259,7 +272,8 @@ INSERT INTO `poruke` (`porukaID`, `primalac`, `posiljalac`, `naslov`, `sadrzaj`)
 (5, 'Com Truise', NULL, 'from admin', 'hey thanks!'),
 (6, 'Bad Copy', NULL, 'obi wan here', 'huan'),
 (7, 'Sajsi MC', NULL, 'hey Sajsi', 'what\'s up'),
-(8, 'Bad Copy', NULL, 'help', 'is on the way');
+(8, 'Bad Copy', NULL, 'help', 'is on the way'),
+(9, 'Bad Copy', NULL, 'YOU STUPIDDDDD', 'YOU DUMBER THAN STUPID');
 
 -- --------------------------------------------------------
 
@@ -307,6 +321,14 @@ CREATE TABLE IF NOT EXISTS `volonter` (
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `volonter`
+--
+
+INSERT INTO `volonter` (`username`) VALUES
+('volonter_1'),
+('volonter_2');
+
 -- --------------------------------------------------------
 
 --
@@ -320,6 +342,14 @@ CREATE TABLE IF NOT EXISTS `volontira` (
   PRIMARY KEY (`username`,`dogadjajID`),
   KEY `dogadjajID` (`dogadjajID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `volontira`
+--
+
+INSERT INTO `volontira` (`username`, `dogadjajID`) VALUES
+('volonter_1', 8),
+('volonter_2', 23);
 
 --
 -- Constraints for dumped tables
@@ -355,13 +385,6 @@ ALTER TABLE `izvodjac`
 --
 ALTER TABLE `korisnik`
   ADD CONSTRAINT `korisnik_ibfk_1` FOREIGN KEY (`username`) REFERENCES `opsti_korisnik` (`username`);
-
---
--- Constraints for table `kupljena_karta`
---
-ALTER TABLE `kupljena_karta`
-  ADD CONSTRAINT `kupljena_karta_ibfk_1` FOREIGN KEY (`kartaID`) REFERENCES `karta` (`kartaID`),
-  ADD CONSTRAINT `kupljena_karta_ibfk_2` FOREIGN KEY (`username`) REFERENCES `korisnik` (`username`);
 
 --
 -- Constraints for table `poruke`
